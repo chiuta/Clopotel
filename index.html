@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c0b10">
+<title>CLOPOȚEL — cronometru de scenă</title>
+<style>
+:root{--bg:#0c0b10;--panel:#15131b;--line:#2d2938;--ink:#ece6d8;--mute:#a59e8c;--gold:#e3b341;--ver:#3fb8a0;--ember:#ff6a4d;--c:var(--mute)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{min-height:100vh;padding:16px}
+h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;margin:0}
+h1{font-size:1.7rem;letter-spacing:.12em;color:var(--gold)}
+h2{font-size:1.15rem}
+.sub{margin:.1rem 0 0;color:var(--mute);font-size:.9rem}
+.top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto 16px}
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+main{display:grid;gap:16px;max-width:1280px;margin:0 auto}
+@media(min-width:960px){main{grid-template-columns:minmax(380px,5fr) 7fr;align-items:start}.timer{position:sticky;top:16px}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+.btn{min-height:44px;min-width:44px;padding:.5rem .95rem;border:1px solid var(--line);background:#1f1c28;color:var(--ink);border-radius:10px;font:inherit;cursor:pointer}
+.btn:hover{border-color:var(--gold)}
+.btn:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn.primary{background:var(--gold);color:#17120a;font-weight:700;border-color:var(--gold)}
+.btn.small{min-height:40px;padding:.3rem .6rem}
+.btn[aria-pressed=true]{border-color:var(--ver);color:var(--ver)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+input[type=text],input[type=number],input[type=time]{min-height:40px;width:100%;background:#0f0d14;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:.35rem .55rem;font:inherit}
+input[type=range]{width:100%}
+label{font-size:.9rem;color:var(--mute)}
+
+/* cronometru */
+.timer{position:relative;overflow:hidden;text-align:center}
+.timer[data-phase=ok]{--c:var(--ver)}
+.timer[data-phase=warn]{--c:var(--gold)}
+.timer[data-phase=over]{--c:var(--ember)}
+.timer[data-phase=done]{--c:var(--gold)}
+.timer::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 45%,var(--c),transparent 70%)}
+.timer.flash::after{animation:fl 1.7s ease-out}
+@keyframes fl{0%{opacity:0}12%{opacity:.4}100%{opacity:0}}
+.who{min-height:3.6rem}
+#who{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;overflow-wrap:anywhere}
+#what{color:var(--mute);overflow-wrap:anywhere}
+.dial{width:min(100%,380px);height:auto;display:block;margin:8px auto}
+.arc{stroke:var(--c);transition:stroke .4s}
+.bell{fill:var(--c);transform-box:fill-box;transform-origin:50% 0}
+.bell.swing{animation:sw 1.7s ease-out}
+@keyframes sw{0%{transform:rotate(0)}8%{transform:rotate(22deg)}22%{transform:rotate(-18deg)}38%{transform:rotate(12deg)}55%{transform:rotate(-7deg)}75%{transform:rotate(3deg)}100%{transform:rotate(0)}}
+.timer[data-phase=over] .arc{animation:pu 1.4s ease-in-out infinite}
+@keyframes pu{50%{opacity:.55}}
+#lab{fill:var(--c);font-weight:700}
+.digits{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;font-weight:700}
+.meta{display:grid;gap:4px;margin:8px 0;color:var(--mute);font-size:.95rem}
+.meta b{color:var(--ink)}
+.late{color:var(--ember);font-weight:700}.early{color:var(--ver);font-weight:700}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
+.keys{margin:12px 0 0;color:var(--mute);font-size:.8rem}
+kbd{background:#0f0d14;border:1px solid var(--line);border-radius:5px;padding:0 .35rem;font-family:ui-monospace,Menlo,monospace}
+#audioHint{display:none;margin-top:10px;padding:.5rem .7rem;border:1px solid var(--gold);border-radius:10px;color:var(--gold);font-size:.9rem}
+
+/* agendă */
+.ahead{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;margin-bottom:10px}
+.atools{display:flex;flex-wrap:wrap;gap:6px}
+#sum{color:var(--mute);font-size:.9rem;margin:0 0 10px}
+#rows{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.row{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(0,1.4fr) 84px auto;gap:6px;align-items:center;padding:8px;border:1px solid var(--line);border-radius:12px;background:#110f16}
+.row.current{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.row.done{opacity:.72}
+.sel{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:52px;padding:2px;border:1px solid var(--line);border-radius:10px;background:#1f1c28;color:var(--ink);cursor:pointer;font:inherit}
+.sel b{font-size:1.05rem}.sel small{color:var(--mute);font-size:.72rem}
+.sel:hover{border-color:var(--gold)}.sel:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.row.current .sel{background:var(--gold);color:#17120a}.row.current .sel small{color:#3a2f10}
+.cm{display:flex;flex-direction:column;gap:2px}
+.res{font-size:.72rem;color:var(--mute);text-align:center;min-height:1em}
+.res.over{color:var(--ember)}
+.racts{display:flex;gap:4px}
+@media(max-width:700px){
+ .row{grid-template-columns:64px 1fr 84px;grid-template-areas:"sel spk spk" "ttl ttl ttl" "min act act"}
+ .row .sel{grid-area:sel}.row .spk{grid-area:spk}.row .ttl{grid-area:ttl}.row .cm{grid-area:min}.row .racts{grid-area:act;justify-content:flex-end}
+}
+details.card{max-width:1280px;margin:16px auto 0}
+summary{cursor:pointer;font-weight:700;color:var(--gold);min-height:32px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+footer{max-width:1280px;margin:16px auto 0;color:var(--mute);font-size:.8rem}
+
+/* mod scenă */
+body.stagemode{padding:0}
+body.stagemode .top,body.stagemode .agenda,body.stagemode details.card,body.stagemode footer,body.stagemode .keys{display:none}
+body.stagemode main{display:block;max-width:none}
+body.stagemode .timer{position:fixed;inset:0;border:0;border-radius:0;display:flex;flex-direction:column;justify-content:center;padding:12px}
+body.stagemode #who{font-size:clamp(1.6rem,5vmin,3.4rem)}
+body.stagemode #what{font-size:clamp(1rem,3vmin,2rem)}
+body.stagemode .dial{width:min(94vw,64vh);margin:0 auto}
+body.stagemode .meta{font-size:clamp(1rem,2.6vmin,1.6rem)}
+body.display .ctrl .hide-d{display:none}
+@media(prefers-reduced-motion:reduce){.timer.flash::after{animation:none;opacity:.2}.bell.swing{animation:none}.timer[data-phase=over] .arc{animation:none}.arc{transition:none}}
+</style>
+</head>
+<body>
+<noscript>CLOPOȚEL are nevoie de JavaScript.</noscript>
+<header class="top">
+ <div>
+  <h1>CLOPOȚEL</h1>
+  <p class="sub">cronometru de scenă cu clopoțel pentru conferințe · funcționează offline</p>
+ </div>
+ <div class="tools">
+  <button class="btn" id="btnStage" type="button">Ecran scenă</button>
+  <button class="btn" id="btnPopup" type="button">Fereastră pentru proiector</button>
+  <button class="btn" id="btnSound" type="button" aria-pressed="true">Sunet: pornit</button>
+ </div>
+</header>
+
+<main>
+ <section class="card timer" id="stage" data-phase="idle" aria-label="Cronometru">
+  <div class="who"><div id="who">—</div><div id="what"></div></div>
+  <svg id="dial" class="dial" viewBox="0 0 300 300" role="img" aria-label="Cadran">
+   <circle cx="150" cy="150" r="128" fill="none" stroke="#2a2631" stroke-width="14"/>
+   <circle id="arc" class="arc" cx="150" cy="150" r="128" fill="none" stroke-width="14" stroke-linecap="round" transform="rotate(-90 150 150)" stroke-dasharray="804.25" stroke-dashoffset="0"/>
+   <g transform="translate(150 72)"><g id="bell" class="bell"><path d="M0-16c-9 0-14 7-14 16v10l-5 6h38l-5-6V0c0-9-5-16-14-16z"/><circle cx="0" cy="21" r="3.5"/></g></g>
+   <text id="t" class="digits" x="150" y="170" text-anchor="middle" font-size="68" fill="#ece6d8">00:00</text>
+   <text id="lab" x="150" y="206" text-anchor="middle" font-size="14" letter-spacing="2">GATA DE START</text>
+  </svg>
+  <div class="meta">
+   <div id="next">Urmează: —</div>
+   <div id="delay">În grafic</div>
+   <div id="endEst"></div>
+  </div>
+  <div class="ctrl">
+   <button class="btn hide-d" id="bPrev" type="button">◀ Anterior</button>
+   <button class="btn primary hide-d" id="bGo" type="button">Start</button>
+   <button class="btn hide-d" id="bNext" type="button">Următorul ▶</button>
+  </div>
+  <div class="ctrl">
+   <button class="btn small hide-d" id="bSub" type="button" aria-label="Scade un minut din timpul alocat">−1 min</button>
+   <button class="btn small hide-d" id="bAdd" type="button" aria-label="Adaugă un minut la timpul alocat">+1 min</button>
+   <button class="btn small hide-d" id="bReset" type="button">Resetează</button>
+   <button class="btn small hide-d" id="bRing" type="button" aria-label="Sună clopoțelul acum">Sună</button>
+   <button class="btn small" id="bExit" type="button" hidden>Ieși din ecran scenă</button>
+  </div>
+  <p class="keys"><kbd>Spațiu</kbd> start/pauză · <kbd>N</kbd>/<kbd>→</kbd> următorul · <kbd>P</kbd>/<kbd>←</kbd> anterior · <kbd>R</kbd> resetează · <kbd>+</kbd>/<kbd>−</kbd> minut · <kbd>B</kbd> clopoțel · <kbd>M</kbd> sunet · <kbd>F</kbd> ecran scenă</p>
+  <div id="audioHint" role="status">Sunetul e blocat de browser. Apasă oriunde în pagină (sau Start) ca să-l activezi.</div>
+ </section>
+
+ <section class="card agenda" aria-labelledby="agTitle">
+  <div class="ahead">
+   <h2 id="agTitle">Agenda</h2>
+   <div class="atools">
+    <button class="btn small" id="aAdd" type="button">+ Adaugă prezentare</button>
+    <button class="btn small" id="aSample" type="button">Exemplu 10 conferințe</button>
+    <button class="btn small" id="aExp" type="button">Exportă</button>
+    <button class="btn small" id="aImp" type="button">Importă</button>
+    <button class="btn small" id="aClr" type="button">Golește</button>
+    <input type="file" id="aFile" accept="application/json,.json" hidden>
+   </div>
+  </div>
+  <p id="sum"></p>
+  <ol id="rows"></ol>
+ </section>
+</main>
+
+<details class="card" id="settings">
+ <summary>Setări clopoțel și agendă</summary>
+ <div class="sgrid">
+  <div><label for="setWarn">Avertizare înainte de final (secunde, 0 = fără)</label><input type="number" id="setWarn" min="0" max="900" step="5"></div>
+  <div><label for="setRepeat">Repetă clopoțelul în depășire la fiecare (secunde, 0 = fără)</label><input type="number" id="setRepeat" min="0" max="600" step="5"></div>
+  <div><label for="setVol">Volum</label><input type="range" id="setVol" min="0.1" max="1" step="0.05"></div>
+  <div><label for="setStart">Ora de început a evenimentului (opțional)</label><input type="time" id="setStart"></div>
+  <div><label><input type="checkbox" id="setAuto"> Pornește automat următoarea prezentare</label></div>
+  <div><button class="btn small" id="tWarn" type="button">Test avertizare</button> <button class="btn small" id="tEnd" type="button">Test final</button></div>
+ </div>
+</details>
+<footer>Datele (agenda, setările, starea cronometrului) rămân în acest browser. Fereastra pentru proiector trebuie deschisă în același browser, pe același calculator.</footer>
+<div id="sr" class="sr" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const isDisplay=location.hash==='#scena';
+const K={ag:'clopotel.agenda.v1',st:'clopotel.settings.v1',rt:'clopotel.runtime.v1',snd:'clopotel.sound.'+(isDisplay?'d':'c')};
+const DEF={warn:120,repeat:30,volume:0.8,auto:false,start:''};
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+const pad=n=>String(n).padStart(2,'0');
+let uid=0;const newId=()=>'i'+Date.now().toString(36)+(uid++).toString(36);
+function load(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function sample(){return [15,15,15,15,15,15,10,10,10,10].map((m,i)=>({id:newId(),speaker:'Vorbitor '+(i+1),title:'',min:m}))}
+function sanitizeAg(a){
+  if(!Array.isArray(a))return null;
+  return a.filter(x=>x&&typeof x==='object').map(x=>({id:typeof x.id==='string'&&x.id?x.id:newId(),speaker:String(x.speaker||'').slice(0,120),title:String(x.title||'').slice(0,240),min:clamp(Math.round(Number(x.min))||10,1,600)}));
+}
+let agenda=sanitizeAg(load(K.ag,null))||sample();
+let settings=Object.assign({},DEF,load(K.st,{}));
+let rt=Object.assign({idx:0,status:'idle',acc:0,seg:0,epoch:1,results:{}},load(K.rt,{}));
+if(['idle','running','paused','finished'].indexOf(rt.status)<0)rt.status='idle';
+if(!rt.results||typeof rt.results!=='object')rt.results={};
+rt.idx=clamp(Math.round(rt.idx)||0,0,Math.max(0,agenda.length-1));
+let soundOn=load(K.snd,!isDisplay);
+let flags={epoch:-1};
+if(!isDisplay){save(K.ag,agenda);}
+
+const cur=()=>agenda[rt.idx];
+const elapsed=now=>rt.acc+(rt.status==='running'?now-rt.seg:0);
+function fmt(sec){sec=Math.max(0,Math.floor(sec));const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return h>0?h+':'+pad(m)+':'+pad(s):pad(m)+':'+pad(s)}
+function clock(ms){const d=new Date(ms);return pad(d.getHours())+':'+pad(d.getMinutes())}
+function startMin(){const m=/^(\d\d):(\d\d)$/.exec(settings.start||'');return m?(+m[1])*60+(+m[2]):null}
+
+/* ---------- audio ---------- */
+let ac=null;
+function audio(){
+  if(!ac){const C=window.AudioContext||window.webkitAudioContext;if(C){try{ac=new C()}catch(e){}}}
+  if(ac&&ac.state==='suspended'){try{ac.resume()}catch(e){}}
+  return ac;
+}
+function strike(a,t,f,v){
+  const out=a.createGain();out.gain.value=clamp(v,0,1)*0.26;out.connect(a.destination);
+  [[1,1,2.6],[2.0,.45,1.8],[2.76,.6,1.6],[5.4,.25,.9],[8.93,.12,.5]].forEach(p=>{
+    const o=a.createOscillator(),g=a.createGain();
+    o.type='sine';o.frequency.value=f*p[0];
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime(p[1],t+0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+p[2]);
+    o.connect(g);g.connect(out);o.start(t);o.stop(t+p[2]+0.05);
+  });
+}
+function play(kind){
+  const a=audio();if(!a)return;
+  const v=settings.volume,t=a.currentTime+0.03;
+  if(kind==='warn')strike(a,t,880,v*0.75);
+  else if(kind==='end'){[0,0.6,1.2].forEach(dt=>strike(a,t+dt,1175,v))}
+  else if(kind==='over')strike(a,t,1175,v*0.85);
+  else strike(a,t,1175,v*0.5);
+}
+let flashT=null;
+function ring(kind){
+  const st=$('stage'),b=$('bell');
+  st.classList.remove('flash');b.classList.remove('swing');void st.offsetWidth;
+  st.classList.add('flash');b.classList.add('swing');
+  clearTimeout(flashT);flashT=setTimeout(()=>{st.classList.remove('flash');b.classList.remove('swing')},1900);
+  $('sr').textContent=kind==='warn'?'Atenție, timpul se apropie de final.':kind==='end'?'Timpul a expirat.':kind==='over'?'Timp depășit.':'';
+  if(soundOn)play(kind);
+}
+function bells(now){
+  const it=cur();if(!it||rt.status!=='running')return;
+  const total=it.min*60000,rem=total-elapsed(now),warnMs=settings.warn*1000,useWarn=warnMs>0&&warnMs<total*0.5;
+  const rp=(settings.repeat||0)*1000;
+  if(flags.epoch!==rt.epoch){
+    flags={epoch:rt.epoch,warn:!useWarn||rem<=warnMs,end:rem<=0,over:(rem<0&&rp>0)?Math.floor(-rem/rp):0};
+    return;
+  }
+  if(useWarn&&rem>warnMs)flags.warn=false;
+  if(rem>0){flags.end=false;flags.over=0}
+  if(useWarn&&!flags.warn&&rem<=warnMs&&rem>0){flags.warn=true;ring('warn')}
+  if(!flags.end&&rem<=0){flags.end=true;flags.warn=true;ring('end')}
+  else if(flags.end&&rp>0&&rem<0){const n=Math.floor(-rem/rp);if(n>flags.over){flags.over=n;ring('over')}}
+}
+
+/* ---------- wake lock ---------- */
+let wl=null;
+async function wakeSync(){
+  try{
+    if(rt.status==='running'&&'wakeLock' in navigator){
+      if(!wl){wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',()=>{wl=null})}
+    }else if(wl){await wl.release();wl=null}
+  }catch(e){}
+}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')wakeSync()});
+
+/* ---------- acțiuni ---------- */
+function commit(){if(!isDisplay){save(K.rt,rt);wakeSync()}updateRows();renderTimer(true)}
+function fresh(){rt.acc=0;rt.seg=Date.now();rt.epoch++;}
+function recordCurrent(){
+  const it=cur();if(!it)return;
+  if(rt.status==='running'||rt.status==='paused'){const e=elapsed(Date.now());if(e>0)rt.results[it.id]=e}
+}
+function start(){
+  const it=cur();if(!it||rt.status==='finished')return;
+  audio();
+  if(rt.status==='idle'){rt.acc=0}
+  rt.seg=Date.now();rt.status='running';commit();
+}
+function pause(){if(rt.status!=='running')return;rt.acc=elapsed(Date.now());rt.status='paused';commit()}
+function toggle(){if(rt.status==='running')pause();else start()}
+function resetCur(){
+  const it=cur();if(!it)return;
+  delete rt.results[it.id];fresh();rt.status='idle';commit();
+}
+function select(i){
+  if(i<0||i>=agenda.length)return;
+  if(i!==rt.idx||rt.status==='finished'){recordCurrent()}
+  rt.idx=i;delete rt.results[agenda[i].id];fresh();rt.status='idle';commit();
+}
+function next(){
+  const it=cur();if(!it||rt.status==='finished')return;
+  recordCurrent();
+  if(rt.idx>=agenda.length-1){rt.status='finished';rt.acc=0;rt.epoch++}
+  else{rt.idx++;delete rt.results[agenda[rt.idx].id];fresh();rt.status=settings.auto?'running':'idle'}
+  commit();
+}
+function prev(){
+  if(!agenda.length)return;
+  if(rt.status==='finished'){select(rt.idx);return}
+  if(rt.idx===0){resetCur();return}
+  select(rt.idx-1);
+}
+function adjust(d){
+  const it=cur();if(!it)return;
+  it.min=clamp(it.min+d,1,600);persistAg();renderAgenda();renderTimer(true);
+}
+
+/* ---------- agendă ---------- */
+function persistAg(){if(!isDisplay)save(K.ag,agenda)}
+function renderAgenda(){
+  const box=$('rows');box.textContent='';
+  let acc=startMin();
+  agenda.forEach((it,i)=>{
+    const li=document.createElement('li');li.className='row';li.dataset.id=it.id;
+    const sel=document.createElement('button');sel.type='button';sel.className='sel';
+    sel.setAttribute('aria-label','Selectează prezentarea '+(i+1));
+    const b=document.createElement('b');b.textContent=String(i+1);sel.appendChild(b);
+    const sm=document.createElement('small');sm.textContent=acc==null?'':pad(Math.floor(acc/60)%24)+':'+pad(acc%60);sel.appendChild(sm);
+    if(acc!=null)acc+=it.min;
+    sel.addEventListener('click',()=>select(i));
+    const spk=document.createElement('input');spk.type='text';spk.className='spk';spk.placeholder='Vorbitor';spk.value=it.speaker;spk.setAttribute('aria-label','Vorbitor, prezentarea '+(i+1));
+    spk.addEventListener('input',()=>{it.speaker=spk.value;persistAg();renderTimer(true)});
+    const ttl=document.createElement('input');ttl.type='text';ttl.className='ttl';ttl.placeholder='Titlul prezentării';ttl.value=it.title;ttl.setAttribute('aria-label','Titlu, prezentarea '+(i+1));
+    ttl.addEventListener('input',()=>{it.title=ttl.value;persistAg();renderTimer(true)});
+    const cm=document.createElement('div');cm.className='cm';
+    const mn=document.createElement('input');mn.type='number';mn.min='1';mn.max='600';mn.value=it.min;mn.setAttribute('aria-label','Minute alocate, prezentarea '+(i+1));
+    mn.addEventListener('change',()=>{it.min=clamp(Math.round(Number(mn.value))||it.min,1,600);persistAg();renderAgenda();renderTimer(true)});
+    const res=document.createElement('div');res.className='res';
+    cm.appendChild(mn);cm.appendChild(res);
+    const act=document.createElement('div');act.className='racts';
+    [['↑','Mută mai sus',()=>move(i,-1)],['↓','Mută mai jos',()=>move(i,1)],['✕','Șterge prezentarea',()=>removeAt(i)]].forEach(a=>{
+      const x=document.createElement('button');x.type='button';x.className='btn small';x.textContent=a[0];x.setAttribute('aria-label',a[1]+' '+(i+1));x.addEventListener('click',a[2]);act.appendChild(x);
+    });
+    li.appendChild(sel);li.appendChild(spk);li.appendChild(ttl);li.appendChild(cm);li.appendChild(act);
+    box.appendChild(li);
+  });
+  const total=agenda.reduce((s,x)=>s+x.min,0);
+  let t=agenda.length+' prezentări · '+total+' min planificate';
+  const sm=startMin();
+  if(sm!=null){const e=sm+total;t+=' · sfârșit planificat '+pad(Math.floor(e/60)%24)+':'+pad(e%60)}
+  $('sum').textContent=t;
+  updateRows();
+}
+function updateRows(){
+  const lis=$('rows').children;
+  for(let i=0;i<lis.length;i++){
+    const li=lis[i],it=agenda[i];if(!it)continue;
+    li.classList.toggle('current',i===rt.idx);
+    const r=rt.results[it.id];
+    li.classList.toggle('done',r!=null&&i!==rt.idx);
+    if(i===rt.idx)li.setAttribute('aria-current','true');else li.removeAttribute('aria-current');
+    const res=li.querySelector('.res');
+    if(r!=null){res.textContent=fmt(r/1000)+' real';res.classList.toggle('over',r>it.min*60000+1000)}
+    else{res.textContent='';res.classList.remove('over')}
+  }
+}
+function move(i,d){
+  const j=i+d;if(j<0||j>=agenda.length)return;
+  const cid=cur()?cur().id:null;
+  const t=agenda[i];agenda[i]=agenda[j];agenda[j]=t;
+  if(cid)rt.idx=agenda.findIndex(x=>x.id===cid);
+  persistAg();save(K.rt,rt);renderAgenda();renderTimer(true);
+}
+function removeAt(i){
+  const wasCur=i===rt.idx;
+  delete rt.results[agenda[i].id];
+  agenda.splice(i,1);
+  if(i<rt.idx)rt.idx--;
+  rt.idx=clamp(rt.idx,0,Math.max(0,agenda.length-1));
+  if(wasCur){fresh();rt.status='idle'}
+  persistAg();save(K.rt,rt);wakeSync();renderAgenda();renderTimer(true);
+}
+function addItem(){
+  agenda.push({id:newId(),speaker:'',title:'',min:agenda.length?agenda[agenda.length-1].min:10});
+  persistAg();renderAgenda();renderTimer(true);
+  const sp=$('rows').querySelectorAll('.spk');if(sp.length)sp[sp.length-1].focus();
+}
+function replaceAgenda(list){
+  agenda=list;rt.idx=0;rt.results={};fresh();rt.status='idle';
+  persistAg();save(K.rt,rt);wakeSync();renderAgenda();renderTimer(true);
+}
+function exportJson(){
+  const data=JSON.stringify({clopotel:1,settings:{warn:settings.warn,repeat:settings.repeat,start:settings.start},agenda:agenda.map(x=>({speaker:x.speaker,title:x.title,min:x.min}))},null,2);
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  a.download='agenda-clopotel.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+function importJson(file){
+  const fr=new FileReader();
+  fr.onload=()=>{
+    try{
+      const d=JSON.parse(fr.result);
+      const list=sanitizeAg(Array.isArray(d)?d:d.agenda);
+      if(!list||!list.length)throw new Error('gol');
+      if(d.settings&&typeof d.settings==='object'){
+        if(Number.isFinite(+d.settings.warn))settings.warn=clamp(+d.settings.warn,0,900);
+        if(Number.isFinite(+d.settings.repeat))settings.repeat=clamp(+d.settings.repeat,0,600);
+        if(typeof d.settings.start==='string')settings.start=d.settings.start;
+        save(K.st,settings);syncSettings();
+      }
+      replaceAgenda(list);
+    }catch(e){alert('Fișierul nu pare o agendă CLOPOȚEL validă.')}
+  };
+  fr.readAsText(file);
+}
+
+/* ---------- cronometru: afișare ---------- */
+const C=804.25;
+const cache={};
+function setT(id,v,prop){if(cache[id+prop]!==v){cache[id+prop]=v;if(prop==='text')$(id).textContent=v}}
+function renderTimer(force){
+  if(force)for(const k in cache)delete cache[k];
+  const now=Date.now(),it=cur(),st=rt.status;
+  let phase='idle',time='--:--',lab='AGENDĂ GOALĂ',frac=1,who='—',what='',over=false;
+  if(it){
+    const total=it.min*60000,rem=total-elapsed(now);
+    who=it.speaker||('Prezentarea '+(rt.idx+1));what=it.title||'';
+    if(st==='finished'){
+      phase='done';time='GATA';
+      let plan=0,real=0;agenda.forEach(a=>{const r=rt.results[a.id];if(r!=null){plan+=a.min*60;real+=r/1000}});
+      lab='REAL '+fmt(real)+' · PLAN '+fmt(plan);who='Agenda încheiată';what='';frac=0;
+    }else{
+      frac=clamp(rem/total,0,1);
+      const sec=Math.ceil(rem/1000);
+      time=(sec<0?'−':'')+fmt(Math.abs(sec));
+      const warnMs=settings.warn*1000,useWarn=warnMs>0&&warnMs<total*0.5;
+      const p=st==='paused'?'PAUZĂ · ':'';
+      if(st==='idle'){phase='idle';lab='GATA DE START';time=fmt(total/1000)}
+      else if(rem<=0){phase='over';over=true;lab=p+'TIMP DEPĂȘIT'}
+      else if(useWarn&&rem<=warnMs){phase='warn';lab=p+'SE ÎNCHEIE'}
+      else{phase='ok';lab=p+'ÎN DESFĂȘURARE'}
+    }
+  }
+  const stage=$('stage');
+  if(stage.dataset.phase!==phase)stage.dataset.phase=phase;
+  setT('who',who,'text');setT('what',what,'text');
+  if(cache.t!==time){cache.t=time;const t=$('t');t.textContent=time;t.setAttribute('font-size',time.length<=5?68:time.length===6?58:time.length===7?48:40)}
+  setT('lab',lab,'text');
+  const off=over?0:C*(1-frac);
+  if(cache.off!==off){cache.off=off;$('arc').setAttribute('stroke-dashoffset',off.toFixed(2))}
+  const ar=time+' — '+lab;if(cache.ar!==ar){cache.ar=ar;$('dial').setAttribute('aria-label',who+'. '+ar)}
+  // următorul
+  const nx=agenda[rt.idx+1];
+  setT('next',st==='finished'||!it?'':(nx?'Urmează: '+(nx.speaker||('Prezentarea '+(rt.idx+2)))+(nx.title?' — '+nx.title:'')+' ('+nx.min+' min)':'Aceasta este ultima prezentare'),'text');
+  // decalaj
+  let d=0;agenda.forEach(a=>{const r=rt.results[a.id];if(r!=null)d+=r-a.min*60000});
+  if(it&&(st==='running'||st==='paused')){const ex=elapsed(now)-it.min*60000;if(ex>0)d+=ex}
+  const dl=$('delay');
+  let dtxt,dcls='';
+  if(d>5000){dtxt='Întârziere față de plan: '+fmt(d/1000);dcls='late'}
+  else if(d<-5000){dtxt='Avans față de plan: '+fmt(-d/1000);dcls='early'}
+  else dtxt='În grafic';
+  if(cache.dl!==dtxt){cache.dl=dtxt;dl.textContent=dtxt;dl.className=dcls}
+  // sfârșit estimat
+  let etxt='';
+  if(it&&st!=='finished'){
+    let rest=0;for(let i=rt.idx+1;i<agenda.length;i++)rest+=agenda[i].min*60000;
+    const here=st==='idle'?it.min*60000:Math.max(0,it.min*60000-elapsed(now));
+    etxt='Sfârșit estimat al agendei: '+clock(now+here+rest);
+  }
+  setT('endEst',etxt,'text');
+  // butoane
+  const go=$('bGo');
+  const gl=st==='running'?'Pauză':(st==='paused'?'Continuă':'Start');
+  if(cache.go!==gl){cache.go=gl;go.textContent=gl}
+  go.disabled=!it||st==='finished';
+  $('bNext').disabled=!it||st==='finished';
+  document.title=(it&&(st==='running'||st==='paused')?time+' · ':'')+'CLOPOȚEL';
+  // sunet blocat?
+  $('audioHint').style.display=(soundOn&&st==='running'&&(!ac||ac.state!=='running'))?'block':'none';
+}
+function tick(){bells(Date.now());renderTimer(false)}
+
+/* ---------- setări ---------- */
+function syncSettings(){
+  $('setWarn').value=settings.warn;$('setRepeat').value=settings.repeat;$('setVol').value=settings.volume;
+  $('setStart').value=settings.start||'';$('setAuto').checked=!!settings.auto;
+}
+function bindSettings(){
+  const upd=()=>{
+    settings.warn=clamp(Math.round(Number($('setWarn').value))||0,0,900);
+    settings.repeat=clamp(Math.round(Number($('setRepeat').value))||0,0,600);
+    settings.volume=clamp(Number($('setVol').value)||0.8,0.1,1);
+    settings.start=$('setStart').value||'';
+    settings.auto=$('setAuto').checked;
+    save(K.st,settings);renderAgenda();renderTimer(true);
+  };
+  ['setWarn','setRepeat','setVol','setStart','setAuto'].forEach(id=>$(id).addEventListener('change',upd));
+  $('tWarn').addEventListener('click',()=>{audio();ring('warn')});
+  $('tEnd').addEventListener('click',()=>{audio();ring('end')});
+}
+function renderSound(){
+  const b=$('btnSound');b.textContent='Sunet: '+(soundOn?'pornit':'oprit');b.setAttribute('aria-pressed',soundOn?'true':'false');
+}
+function toggleSound(){
+  soundOn=!soundOn;save(K.snd,soundOn);renderSound();
+  if(soundOn){audio();play('test')}
+  renderTimer(true);
+}
+
+/* ---------- mod scenă ---------- */
+function stageOn(){return document.body.classList.contains('stagemode')}
+function setStage(on){
+  document.body.classList.toggle('stagemode',on);
+  $('bExit').hidden=!(on&&!isDisplay);
+  if(on){const e=document.documentElement;if(e.requestFullscreen&&!document.fullscreenElement)e.requestFullscreen().catch(()=>{})}
+  else if(document.fullscreenElement&&document.exitFullscreen){document.exitFullscreen().catch(()=>{})}
+}
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&stageOn()&&!isDisplay)setStage(false)});
+
+/* ---------- legături ---------- */
+function init(){
+  if(isDisplay){document.body.classList.add('display');document.body.classList.add('stagemode');document.title='CLOPOȚEL — scenă'}
+  syncSettings();bindSettings();renderSound();renderAgenda();
+  $('bGo').addEventListener('click',toggle);
+  $('bNext').addEventListener('click',next);
+  $('bPrev').addEventListener('click',prev);
+  $('bReset').addEventListener('click',resetCur);
+  $('bAdd').addEventListener('click',()=>adjust(1));
+  $('bSub').addEventListener('click',()=>adjust(-1));
+  $('bRing').addEventListener('click',()=>{audio();ring('end')});
+  $('btnStage').addEventListener('click',()=>setStage(true));
+  $('bExit').addEventListener('click',()=>setStage(false));
+  $('btnPopup').addEventListener('click',()=>{window.open(location.href.split('#')[0]+'#scena','clopotel_scena','width=1100,height=720')});
+  $('btnSound').addEventListener('click',toggleSound);
+  $('aAdd').addEventListener('click',addItem);
+  $('aSample').addEventListener('click',()=>{if(!agenda.length||confirm('Înlocuiești agenda curentă cu exemplul?'))replaceAgenda(sample())});
+  $('aExp').addEventListener('click',exportJson);
+  $('aImp').addEventListener('click',()=>$('aFile').click());
+  $('aFile').addEventListener('change',e=>{const f=e.target.files[0];if(f)importJson(f);e.target.value=''});
+  $('aClr').addEventListener('click',()=>{if(confirm('Ștergi toată agenda?'))replaceAgenda([])});
+  document.addEventListener('pointerdown',()=>{if(soundOn)audio()},{passive:true});
+  document.addEventListener('keydown',e=>{
+    if(e.ctrlKey||e.metaKey||e.altKey)return;
+    const tg=e.target;
+    if(tg&&(tg.tagName==='INPUT'||tg.tagName==='TEXTAREA'||tg.tagName==='SELECT'||tg.isContentEditable))return;
+    const k=e.key;
+    if(isDisplay){
+      if(k==='f'||k==='F')setStage(true);
+      if(k==='m'||k==='M')toggleSound();
+      return;
+    }
+    if(k===' '){if(tg&&tg.closest&&tg.closest('button,summary,a'))return;e.preventDefault();toggle()}
+    else if(k==='ArrowRight'||k==='n'||k==='N'){next()}
+    else if(k==='ArrowLeft'||k==='p'||k==='P'){prev()}
+    else if(k==='r'||k==='R'){resetCur()}
+    else if(k==='+'||k==='='){adjust(1)}
+    else if(k==='-'||k==='−'){adjust(-1)}
+    else if(k==='b'||k==='B'){audio();ring('end')}
+    else if(k==='m'||k==='M'){toggleSound()}
+    else if(k==='f'||k==='F'){setStage(!stageOn())}
+  });
+  window.addEventListener('storage',e=>{
+    if(!isDisplay)return;
+    if(e.key===K.ag){agenda=sanitizeAg(load(K.ag,null))||agenda;rt.idx=clamp(rt.idx,0,Math.max(0,agenda.length-1))}
+    else if(e.key===K.st){settings=Object.assign({},DEF,load(K.st,{}))}
+    else if(e.key===K.rt){const n=load(K.rt,null);if(n)rt=Object.assign(rt,n)}
+    else return;
+    renderTimer(true);
+  });
+  renderTimer(true);
+  setInterval(tick,100);
+  wakeSync();
+}
+init();
+})();
+</script>
+</body>
+</html>
