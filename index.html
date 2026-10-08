@@ -192,8 +192,22 @@ function sanitizeAg(a){
   return a.filter(x=>x&&typeof x==='object').map(x=>({id:typeof x.id==='string'&&x.id?x.id:newId(),speaker:String(x.speaker||'').slice(0,120),title:String(x.title||'').slice(0,240),min:clamp(Math.round(Number(x.min))||10,1,600)}));
 }
 let agenda=sanitizeAg(load(K.ag,null))||sample();
-let settings=Object.assign({},DEF,load(K.st,{}));
-let rt=Object.assign({idx:0,status:'idle',acc:0,seg:0,epoch:1,results:{}},load(K.rt,{}));
+function normSettings(o){
+  const s=Object.assign({},DEF,(o&&typeof o==='object')?o:{});
+  s.warn=clamp(Math.round(Number(s.warn))||0,0,900);
+  s.repeat=clamp(Math.round(Number(s.repeat))||0,0,600);
+  s.volume=clamp(Number(s.volume)||0.8,0.1,1);
+  s.auto=!!s.auto;
+  s.start=(typeof s.start==='string'&&/^\d\d:\d\d$/.test(s.start))?s.start:'';
+  return s;
+}
+let settings=normSettings(load(K.st,{}));
+function normRt(o){
+  const r=Object.assign({idx:0,status:'idle',acc:0,seg:0,epoch:1,results:{}},(o&&typeof o==='object')?o:{});
+  r.acc=Number.isFinite(+r.acc)?+r.acc:0;r.seg=Number.isFinite(+r.seg)?+r.seg:0;r.epoch=Number.isFinite(+r.epoch)?+r.epoch:1;
+  return r;
+}
+let rt=normRt(load(K.rt,{}));
 if(['idle','running','paused','finished'].indexOf(rt.status)<0)rt.status='idle';
 if(!rt.results||typeof rt.results!=='object')rt.results={};
 rt.idx=clamp(Math.round(rt.idx)||0,0,Math.max(0,agenda.length-1));
@@ -258,13 +272,16 @@ function bells(now){
 }
 
 /* ---------- wake lock ---------- */
-let wl=null;
+let wl=null,wlBusy=false;
 async function wakeSync(){
+  if(wlBusy)return;
+  wlBusy=true;
   try{
     if(rt.status==='running'&&'wakeLock' in navigator){
-      if(!wl){wl=await navigator.wakeLock.request('screen');wl.addEventListener('release',()=>{wl=null})}
-    }else if(wl){await wl.release();wl=null}
+      if(!wl){const l=await navigator.wakeLock.request('screen');wl=l;l.addEventListener('release',()=>{if(wl===l)wl=null})}
+    }else if(wl){const l=wl;wl=null;await l.release()}
   }catch(e){}
+  wlBusy=false;
 }
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')wakeSync()});
 
@@ -289,6 +306,7 @@ function resetCur(){
 }
 function select(i){
   if(i<0||i>=agenda.length)return;
+  if(i===rt.idx&&(rt.status==='running'||rt.status==='paused')&&!confirm('Repornești de la zero prezentarea curentă?'))return;
   if(i!==rt.idx||rt.status==='finished'){recordCurrent()}
   rt.idx=i;delete rt.results[agenda[i].id];fresh();rt.status='idle';commit();
 }
@@ -536,6 +554,7 @@ function init(){
   document.addEventListener('pointerdown',()=>{if(soundOn)audio()},{passive:true});
   document.addEventListener('keydown',e=>{
     if(e.ctrlKey||e.metaKey||e.altKey)return;
+    if(e.repeat)return; /* tasta apasata lung nu trebuie sa sara peste vorbitori */
     const tg=e.target;
     if(tg&&(tg.tagName==='INPUT'||tg.tagName==='TEXTAREA'||tg.tagName==='SELECT'||tg.isContentEditable))return;
     const k=e.key;
@@ -557,13 +576,15 @@ function init(){
   window.addEventListener('storage',e=>{
     if(!isDisplay)return;
     if(e.key===K.ag){agenda=sanitizeAg(load(K.ag,null))||agenda;rt.idx=clamp(rt.idx,0,Math.max(0,agenda.length-1))}
-    else if(e.key===K.st){settings=Object.assign({},DEF,load(K.st,{}))}
-    else if(e.key===K.rt){const n=load(K.rt,null);if(n)rt=Object.assign(rt,n)}
+    else if(e.key===K.st){settings=normSettings(load(K.st,{}))}
+    else if(e.key===K.rt){const n=load(K.rt,null);if(n&&typeof n==='object'){rt=normRt(Object.assign({},rt,n));if(['idle','running','paused','finished'].indexOf(rt.status)<0)rt.status='idle';if(!rt.results||typeof rt.results!=='object')rt.results={};rt.idx=clamp(Math.round(rt.idx)||0,0,Math.max(0,agenda.length-1))}}
     else return;
     renderTimer(true);
   });
   renderTimer(true);
   setInterval(tick,100);
+  /* ceas auxiliar in Web Worker: tab-urile ascunse sunt throttled (pana la 1/min), worker-ul nu */
+  try{const wk=new Worker(URL.createObjectURL(new Blob(['setInterval(function(){postMessage(0)},250)'],{type:'text/javascript'})));wk.onmessage=tick;wk.onerror=function(ev){if(ev&&ev.preventDefault)ev.preventDefault()}}catch(e){}
   wakeSync();
 }
 init();

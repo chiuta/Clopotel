@@ -7,7 +7,7 @@ Un singur fișier HTML, fără dependențe externe, funcționează complet offli
 
 ## Utilizare
 
-1. Deschide `index.html` în browser (sau pagina publicată cu GitHub Pages: **<LINK-PAGES>**).
+1. Deschide `index.html` în browser (sau pagina publicată cu GitHub Pages: **https://chiuta.github.io/Clopotel/**).
 2. Completează agenda: vorbitor, titlu, minute alocate. Poți muta, șterge, exporta și importa agenda (JSON).
 3. Apasă **Start**. Clopoțelul sună la avertizare (implicit cu 2 minute înainte), la final și periodic în depășire.
 4. **Ecran scenă** pune cronometrul pe tot ecranul; **Fereastră pentru proiector** deschide o a doua fereastră sincronizată
