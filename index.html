@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-g+Har/yzB6hJjt88SDHgzJDg+ko0VFL84h/18yJO4B0='; style-src 'unsafe-inline'; img-src data:; media-src data: blob:; worker-src blob:; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#0c0b10">
 <title>CLOPOȚEL — cronometru de scenă</title>
 <style>
@@ -543,7 +544,8 @@ function init(){
   $('bRing').addEventListener('click',()=>{audio();ring('end')});
   $('btnStage').addEventListener('click',()=>setStage(true));
   $('bExit').addEventListener('click',()=>setStage(false));
-  $('btnPopup').addEventListener('click',()=>{window.open(location.href.split('#')[0]+'#scena','clopotel_scena','width=1100,height=720')});
+  $('btnPopup').addEventListener('click',()=>{let w=null;try{w=window.open(location.href.split('#')[0]+'#scena','clopotel_scena','width=1100,height=720')}catch(e){w=null}
+    if(!w){const m='Fereastra pentru proiector a fost blocată de browser. Permite ferestrele pop-up pentru această pagină și apasă din nou (sau folosește „Ecran scenă”).';const sr=$('sr');if(sr)sr.textContent=m;try{alert(m)}catch(e){}}});
   $('btnSound').addEventListener('click',toggleSound);
   $('aAdd').addEventListener('click',addItem);
   $('aSample').addEventListener('click',()=>{if(!agenda.length||confirm('Înlocuiești agenda curentă cu exemplul?'))replaceAgenda(sample())});

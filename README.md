@@ -1,5 +1,7 @@
 # CLOPOȚEL
 
+Ultima actualizare: 11 octombrie 2026
+
 Cronometru de scenă cu clopoțel pentru conferințe: limitează timpul fiecărui vorbitor din agendă.
 Un singur fișier HTML, fără dependențe externe, funcționează complet offline („fără frontiere”, trade-free).
 
@@ -35,6 +37,12 @@ Un singur fișier HTML, fără dependențe externe, funcționează complet offli
 ## Publicare cu GitHub Pages
 
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Fișierul `.nojekyll` este deja inclus.
+
+## Istoric / Changelog
+
+### 11.10.2026 — 11 octombrie 2026
+- Fereastra pentru proiector: dacă browserul blochează fereastra pop-up, apare acum un mesaj clar cu pașii de urmat (în loc de nicio reacție).
+- Adăugat Content-Security-Policy strict (script cu hash, fără rețea); verificare axe fără încălcări.
 
 ## Licență
 
