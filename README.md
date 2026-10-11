@@ -30,6 +30,7 @@ Un singur fișier HTML, fără dependențe externe, funcționează complet offli
 
 ## Note
 
+- Butonul **English / Română** de lângă titlu comută interfața între română și engleză (alegerea se păstrează în browser; fereastra pentru proiector o urmează).
 - Butonul **Temă luminoasă/întunecată** schimbă tema (implicit întunecată, potrivită pentru scenă); alegerea se păstrează în browser. Tipărirea (Ctrl+P) produce doar agenda, în alb-negru.
 - Browserul blochează sunetul până la primul clic: apasă Start sau orice buton înainte de eveniment.
 - Datele (agenda, setările, starea cronometrului) se păstrează în browser (`localStorage`); după o reîncărcare, cronometrul continuă.
@@ -40,6 +41,11 @@ Un singur fișier HTML, fără dependențe externe, funcționează complet offli
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Fișierul `.nojekyll` este deja inclus.
 
 ## Istoric / Changelog
+
+### 11.10.2026 (a treia actualizare) — 11 octombrie 2026
+- Interfață în două limbi: română și engleză (buton lângă titlu), inclusiv etichete ARIA, mesaje, scurtături și text de ajutor; verificat cu axe în ambele limbi.
+- Linia „Avans/Întârziere față de plan” arată acum pe câte prezentări încheiate se bazează calculul (evită confuzia după o trecere rapidă peste vorbitori).
+- CSP: `connect-src 'none'` (aplicația nu face cereri de rețea).
 
 ### 11.10.2026 (a doua actualizare) — 11 octombrie 2026
 - Import agendă din text lipit sau din fișier `.csv`/`.txt` (rânduri `Vorbitor | Titlu | minute`), cu mesaj despre rândurile importate sau ajustate.
