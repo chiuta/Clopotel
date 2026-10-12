@@ -2,8 +2,10 @@
 <html lang="ro">
 <head>
 <meta charset="utf-8">
+<meta name="application-version" content="1.0.0">
+<meta name="last-updated" content="2026-10-12">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-vhS8BraqV7rVC4Bp3XETMy62oWt/gbhuHb6wnqyiew0='; style-src 'unsafe-inline'; img-src data:; media-src data: blob:; connect-src 'none'; worker-src blob:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-/RhDh5lkd1NmRPA9iX0GdpftnEhf0Kt+Q3LOEUpFYWM='; style-src 'unsafe-inline'; img-src data:; media-src data: blob:; connect-src 'none'; worker-src blob:; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#0c0b10">
 <title>CLOPOȚEL — cronometru de scenă</title>
 <style>
@@ -196,7 +198,7 @@ body.display .ctrl .hide-d{display:none}
   <div><button class="btn small" id="tWarn" type="button">Test avertizare</button> <button class="btn small" id="tEnd" type="button">Test final</button></div>
  </div>
 </details>
-<footer id="foot">Datele (agenda, setările, starea cronometrului) rămân în acest browser. Fereastra pentru proiector trebuie deschisă în același browser, pe același calculator.</footer>
+<footer id="foot"><span id="footTxt">Datele (agenda, setările, starea cronometrului) rămân în acest browser. Fereastra pentru proiector trebuie deschisă în același browser, pe același calculator.</span> <span class="verln"><span id="verlbl">Versiune</span> <span id="app-version">v1.0.0 · 2026-10-12</span></span></footer>
 <div id="sr" class="sr" aria-live="polite"></div>
 
 <script>
@@ -254,7 +256,7 @@ const ENS=[
  ['pasteTa','p','Jane Smith | Opening | 5\nJohn Doe | Artificial intelligence in education | 20\nMary Roe 15'],['pAdd','t','Add to agenda'],['pRep','t','Replace agenda'],['pClose','t','Close'],
  ['setSum','t','Bell and agenda settings'],['lWarn','t','Warning before the end (seconds, 0 = none)'],['lRepeat','t','Repeat the bell in overtime every (seconds, 0 = none)'],['lVol','t','Volume'],
  ['lStart','t','Event start time (optional)'],['lAuto','x',' Start the next talk automatically'],['tWarn','t','Test warning'],['tEnd','t','Test end'],
- ['foot','t','Your data (agenda, settings, timer state) stays in this browser. The projector window must be opened in the same browser, on the same computer.'],['noscr','t','CLOPOȚEL needs JavaScript.']
+ ['footTxt','t','Your data (agenda, settings, timer state) stays in this browser. The projector window must be opened in the same browser, on the same computer.'],['verlbl','t','Version'],['noscr','t','CLOPOȚEL needs JavaScript.']
 ];
 function applyLang(){
   document.documentElement.lang=lang;
