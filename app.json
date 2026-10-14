@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "slug": "clopotel",
+  "name": "CLOPOȚEL — cronometru de scenă",
+  "version": "1.1.0",
+  "updated": "2026-10-14",
+  "description": "",
+  "egress": [],
+  "permissions": [
+    "speechSynthesis",
+    "serviceWorker",
+    "localStorage",
+    "Worker"
+  ],
+  "storageKeys": [],
+  "sizeBytes": 143953,
+  "sha256": "73887ad0b0c3df70ab047ca49d5766ad2309a0670f31e3199258630318e47e3e",
+  "csp": {
+    "present": true,
+    "directives": {
+      "default-src": "'none'",
+      "script-src": "sha256×3",
+      "style-src": "'unsafe-inline'",
+      "img-src": "'self' data:",
+      "media-src": "data: blob:",
+      "connect-src": "'none'",
+      "worker-src": "'self' blob:",
+      "base-uri": "'none'",
+      "form-action": "'none'",
+      "manifest-src": "'self'"
+    },
+    "scriptInline": "hash",
+    "connect": "'none'"
+  },
+  "features": {
+    "export": true,
+    "import": true,
+    "i18n": [],
+    "pwa": {
+      "manifest": true,
+      "serviceWorker": true
+    },
+    "modules": [
+      "core",
+      "label",
+      "bundle"
+    ]
+  },
+  "kit": {
+    "version": "1.0.0",
+    "modules": [
+      "core",
+      "label",
+      "bundle"
+    ]
+  },
+  "selfSerializing": false
+}

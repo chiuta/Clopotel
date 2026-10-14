@@ -1,6 +1,6 @@
 # CLOPOȚEL
 
-**Versiune:** 1.0.0 · **Ultima actualizare:** 12 octombrie 2026
+**Versiune:** 1.1.0 · **Ultima actualizare:** 14 octombrie 2026
 
 Cronometru de scenă cu clopoțel pentru conferințe: limitează timpul fiecărui vorbitor din agendă.
 Un singur fișier HTML, fără dependențe externe, funcționează complet offline („fără frontiere”, trade-free).
@@ -14,6 +14,22 @@ Un singur fișier HTML, fără dependențe externe, funcționează complet offli
 3. Apasă **Start**. Clopoțelul sună la avertizare (implicit cu 2 minute înainte), la final și periodic în depășire.
 4. **Ecran scenă** pune cronometrul pe tot ecranul; **Fereastră pentru proiector** deschide o a doua fereastră sincronizată
    (același browser, același calculator) pe care o muți pe ecranul sălii.
+
+## Funcții noi (v1.1.0, 14 octombrie 2026)
+
+Funcții alese după citirea aplicației, pentru ce lipsea unui organizator după eveniment și în sală:
+
+### Raport: plan față de real
+Secțiunea pliabilă „Raport: plan față de real” (sub Setări) arată, pentru fiecare prezentare, timpul planificat, timpul real, diferența (roșu = depășit, verde = sub plan), starea (încheiată / în curs / neînceput) și totaluri: suma pe prezentările cronometrate și planul întregii agende. Se actualizează în timp real. „Exportă CSV” descarcă `raport-clopotel.csv` (separator `;`, UTF-8 cu BOM pentru Excel/LibreOffice; celulele care ar putea fi interpretate ca formule sunt neutralizate); „Tipărește raportul” tipărește doar tabelul. Timpii vin din rezultatele pe care Clopoțel le ține deja (o prezentare intră în raport când e încheiată sau părăsită, cea curentă cu timpul de până acum). **Limită:** nu există istoric al evenimentelor anterioare; un „Resetează” sau „Selectează” pe o prezentare ștergde timpul ei real din raport (comportamentul existent).
+
+### Anunțuri vocale (opțional)
+Căsuța „Anunțuri vocale” din Setări: la avertizare și la final, pe lângă clopoțel, se spune cu voce tare „Au rămas 2 minute.” / „A rămas un minut.” / „Au rămas N secunde.” / „Timpul a expirat.” (în engleză la limba En). Folosește sinteza vocală a browserului (`speechSynthesis`), respectă volumul și comutatorul „Sunet” (cu sunetul oprit nu se vorbește), este oprită implicit și se dezactivează automat dacă browserul nu are voce. Fereastra pentru proiector nu vorbește (evită dublarea). **Limită:** calitatea și limba vocii depind de sistem; unele sisteme nu au voce românească și citesc cu accent străin; unele voci sunt furnizate online de producătorul browserului, în afara controlului aplicației.
+
+Interfața rămâne în română și engleză (comutatorul existent); textele noi au ambele variante. Nu am adăugat hu/de, fiindcă aplicația are doar un comutator ro/en; kitul are totuși interfața în 8 limbi.
+
+### Transparență și copie de siguranță (fff-kit)
+
+Un clic (sau Enter) pe versiunea afișată (`v 1.1.0 · 2026-10-14`) deschide fereastra „Transparență”: gazdele de rețea declarate (0 cereri externe), cheile de stocare locală cu dimensiuni, API-urile folosite, mărimea și SHA-256 al fișierului (cu verificator pentru un fișier descărcat) și **copia de siguranță** a datelor aplicației într-un fișier `.fff.json` (opțional criptat cu parolă, AES-GCM 256 / PBKDF2; parola nu poate fi recuperată), import cu confirmare și ștergerea datelor aplicației. Kitul (`fff-kit`, module: core, label, bundle) este lipit în `index.html`, nu face cereri de rețea și nu schimbă datele existente; fără el aplicația funcționează la fel. Textele kitului sunt în 8 limbi (ro, en, fr, it, es, pt, hu, de); **traducerile fr/it/es/pt/hu/de sunt automate și neverificate nativ**. Interfața aplicației însăși rămâne în română.
 
 ## Scurtături
 
@@ -41,6 +57,9 @@ Un singur fișier HTML, fără dependențe externe, funcționează complet offli
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Fișierul `.nojekyll` este deja inclus.
 
 ## Istoric / Changelog
+
+### 1.1.0 — 14 octombrie 2026
+- Raport plan/real (+ CSV, tipărire); anunțuri vocale opționale; fff-kit (Transparență + copie de siguranță); secțiunile pliabile Setări și Raport sunt acum într-un punct de reper (`aside`) pentru accesibilitate (axe `region` era încălcat înainte).
 
 ### 1.0.0 — 12 octombrie 2026
 - Versiunea și data ultimei actualizări sunt afișate în aplicație (subsol).
