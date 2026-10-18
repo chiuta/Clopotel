@@ -21,7 +21,7 @@ console.log("1. pornire");
   check("0 erori", st.errs.length === 0, st.errs);
   check("0 cereri de rețea", st.net.length === 0, st.net);
   check("0 violări CSP", (await page.evaluate(() => window.__csp)).length === 0);
-  check("meta application-version 1.1.0", (await page.getAttribute('meta[name="application-version"]', "content")) === "1.1.0");
+  check("meta application-version 1.1.1", (await page.getAttribute('meta[name="application-version"]', "content")) === "1.1.1");
   check("#app-version", /1\.1\.0 · 2026-10-14/.test(await page.textContent("#app-version")));
   check("fără depășire orizontală", (await hOverflow(page)) <= 0);
   check("raportul e închis implicit (starea inițială neschimbată)", !(await page.locator("#reportBox").evaluate(d => d.open)));
@@ -170,6 +170,34 @@ console.log("K. kit (Transparență + copie de siguranță)");
   await kitLabel(page, "clopotel");
   await kitSmoke(page, "clopotel", ["clopotel.agenda.v1", "[{\"id\":\"i1\",\"speaker\":\"Ana\",\"title\":\"\",\"min\":3}]"]);
   check("kit: fără erori", st.errs.length === 0, st.errs);
+  await browser.close();
+}
+console.log("9. import fișier: confirmare înainte de înlocuirea agendei");
+{
+  const {browser, page, st} = await launch();
+  await setAgenda(page, "Ana | Unu | 1\nBob | Doi | 2\nCia | Trei | 3");
+  const rows = () => page.locator("#rows li.row").count();
+  check("agenda inițială are 3 prezentări", (await rows()) === 3);
+  const json = JSON.stringify({agenda: [{speaker: "Nou", title: "Unul", min: 4}, {speaker: "Nou2", title: "Doi", min: 5}], settings: {warn: 77}});
+  const setWarn = () => page.evaluate(() => { try { return JSON.parse(localStorage.getItem("clopotel.settings.v1") || "{}").warn } catch (e) { return null } });
+  // renunț
+  let msg = "";
+  page.once("dialog", d => { msg = d.message(); d.dismiss(); });
+  await page.setInputFiles("#aFile", {name: "agenda.json", mimeType: "application/json", buffer: Buffer.from(json)});
+  await page.waitForTimeout(400);
+  check("a apărut confirmarea (cu numărul 2)", /2/.test(msg), msg);
+  check("după renunțare agenda rămâne cu 3 prezentări", (await rows()) === 3);
+  check("setările nu s-au schimbat (warn ≠ 77)", (await setWarn()) !== 77);
+  // CSV/text: renunț
+  page.once("dialog", d => d.dismiss());
+  await page.setInputFiles("#aFile", {name: "agenda.csv", mimeType: "text/csv", buffer: Buffer.from("Dan;Patru;7\nEli;Cinci;8\n")});
+  await page.waitForTimeout(400);
+  check("CSV: după renunțare agenda rămâne cu 3", (await rows()) === 3);
+  // accept
+  page.once("dialog", d => d.accept());
+  await page.setInputFiles("#aFile", {name: "agenda.json", mimeType: "application/json", buffer: Buffer.from(json)});
+  await page.waitForTimeout(400);
+  check("după acceptare agenda are 2 prezentări", (await rows()) === 2);
   await browser.close();
 }
 summary();
