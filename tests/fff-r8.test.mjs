@@ -21,7 +21,7 @@ console.log("1. pornire");
   check("0 erori", st.errs.length === 0, st.errs);
   check("0 cereri de rețea", st.net.length === 0, st.net);
   check("0 violări CSP", (await page.evaluate(() => window.__csp)).length === 0);
-  check("meta application-version 1.1.1", (await page.getAttribute('meta[name="application-version"]', "content")) === "1.1.1");
+  check("meta application-version 1.2.0", (await page.getAttribute('meta[name="application-version"]', "content")) === "1.2.0");
   check("#app-version", /1\.1\.0 · 2026-10-14/.test(await page.textContent("#app-version")));
   check("fără depășire orizontală", (await hOverflow(page)) <= 0);
   check("raportul e închis implicit (starea inițială neschimbată)", !(await page.locator("#reportBox").evaluate(d => d.open)));
@@ -64,10 +64,10 @@ console.log("2. raport plan/real");
   check("CSV: injecție de formule neutralizată și ghilimele duplicate corect", lines[2].startsWith("2;'=1+1;\"Titlu \"\"citat\"\"\";2;"), lines[2]);
   check("CSV: rândul neînceput are câmpuri goale", lines[3] === "3;Ion;Final;3;;;neînceput", lines[3]);
   // limba
-  await page.click("#btnLang");
+  await page.selectOption("#langSel", "en");
   await page.waitForTimeout(1300);
   check("raport tradus în engleză", /Report: plan vs\. actual/.test(await page.textContent("#repSum")) && (await page.textContent("#repRows")).includes("in progress"));
-  await page.click("#btnLang");
+  await page.selectOption("#langSel", "ro");
   // tipărire
   await page.emulateMedia({media: "print"});
   await page.evaluate(() => document.body.classList.add("print-report"));
@@ -114,11 +114,11 @@ console.log("3. anunțuri vocale");
   await page.click("#tWarn");
   said = await page.evaluate(() => window.__said.slice());
   check("45 s -> „Au rămas 45 secunde.”", said[3] && said[3][0] === "Au rămas 45 secunde.", said);
-  await page.click("#btnLang");
+  await page.selectOption("#langSel", "en");
   await page.click("#tEnd");
   said = await page.evaluate(() => window.__said.slice());
   check("în engleză: „Time is up.” cu en-US", said[4] && said[4][0] === "Time is up." && said[4][1] === "en-US", said);
-  await page.click("#btnLang");
+  await page.selectOption("#langSel", "ro");
   await page.click("#btnSound");                       // sunet oprit -> nici vocea
   const n = await page.evaluate(() => window.__said.length);
   await page.click("#tEnd");
