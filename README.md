@@ -1,88 +1,89 @@
 # CLOPOȚEL
 
-**Versiune:** 1.1.1 · **Ultima actualizare:** 18 octombrie 2026
+**English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-Cronometru de scenă cu clopoțel pentru conferințe: limitează timpul fiecărui vorbitor din agendă.
-Un singur fișier HTML, fără dependențe externe, funcționează complet offline („fără frontiere”, trade-free).
+**Version:** 1.1.1 · **Last updated:** 2026-10-18
+
+A stage timer with a bell for conferences: it limits each speaker's time on the agenda.
+A single HTML file, with no external dependencies, working fully offline ("without borders", trade-free).
 
 ![CLOPOȚEL](screenshot.png)
 
-## Utilizare
+## Usage
 
-1. Deschide `index.html` în browser (sau pagina publicată cu GitHub Pages: **https://chiuta.github.io/Clopotel/**).
-2. Completează agenda: vorbitor, titlu, minute alocate. Poți muta, șterge, exporta și importa agenda (JSON) sau o poți lipi ca listă text (**Lipește listă**: `Vorbitor | Titlu | minute`, câte o prezentare pe rând; separatori `|`, `;` sau tab; fără minute se folosesc 10). Fișierele `.csv`/`.txt` cu același format se pot importa la fel.
-3. Apasă **Start**. Clopoțelul sună la avertizare (implicit cu 2 minute înainte), la final și periodic în depășire.
-4. **Ecran scenă** pune cronometrul pe tot ecranul; **Fereastră pentru proiector** deschide o a doua fereastră sincronizată
-   (același browser, același calculator) pe care o muți pe ecranul sălii.
+1. Open `index.html` in a browser (or the page published with GitHub Pages: **https://chiuta.github.io/Clopotel/**).
+2. Fill in the agenda: speaker, title, allotted minutes. You can move, delete, export and import the agenda (JSON), or paste it as a text list (**Paste list**: `Vorbitor | Titlu | minute`, one presentation per line; separators `|`, `;` or tab; without minutes, 10 is used). `.csv`/`.txt` files with the same format can be imported in the same way.
+3. Press **Start**. The bell rings at the warning (by default 2 minutes before), at the end, and periodically in overtime.
+4. **Stage screen** puts the timer on the full screen; **Projector window** opens a second, synchronised window
+   (same browser, same computer) that you move to the room's screen.
 
-## Funcții noi (v1.1.0, 14 octombrie 2026)
+## New features (v1.1.0, 14 October 2026)
 
-Funcții alese după citirea aplicației, pentru ce lipsea unui organizator după eveniment și în sală:
+Features chosen after reading the app, for what an organiser was missing after the event and in the room:
 
-### Raport: plan față de real
-Secțiunea pliabilă „Raport: plan față de real” (sub Setări) arată, pentru fiecare prezentare, timpul planificat, timpul real, diferența (roșu = depășit, verde = sub plan), starea (încheiată / în curs / neînceput) și totaluri: suma pe prezentările cronometrate și planul întregii agende. Se actualizează în timp real. „Exportă CSV” descarcă `raport-clopotel.csv` (separator `;`, UTF-8 cu BOM pentru Excel/LibreOffice; celulele care ar putea fi interpretate ca formule sunt neutralizate); „Tipărește raportul” tipărește doar tabelul. Timpii vin din rezultatele pe care Clopoțel le ține deja (o prezentare intră în raport când e încheiată sau părăsită, cea curentă cu timpul de până acum). **Limită:** nu există istoric al evenimentelor anterioare; un „Resetează” sau „Selectează” pe o prezentare ștergde timpul ei real din raport (comportamentul existent).
+### Report: plan versus actual
+The collapsible section "Report: plan versus actual" (under Settings) shows, for each presentation, the planned time, the actual time, the difference (red = over, green = under plan), the status (finished / in progress / not started) and totals: the sum over the timed presentations and the plan for the whole agenda. It updates in real time. "Export CSV" downloads `raport-clopotel.csv` (separator `;`, UTF-8 with BOM for Excel/LibreOffice; cells that could be interpreted as formulas are neutralised); "Print the report" prints only the table. The times come from the results that Clopoțel already keeps (a presentation enters the report when it is finished or left, the current one with the time so far). **Limit:** there is no history of previous events; a "Reset" or "Select" on a presentation deletes its actual time from the report (existing behaviour).
 
-### Anunțuri vocale (opțional)
-Căsuța „Anunțuri vocale” din Setări: la avertizare și la final, pe lângă clopoțel, se spune cu voce tare „Au rămas 2 minute.” / „A rămas un minut.” / „Au rămas N secunde.” / „Timpul a expirat.” (în engleză la limba En). Folosește sinteza vocală a browserului (`speechSynthesis`), respectă volumul și comutatorul „Sunet” (cu sunetul oprit nu se vorbește), este oprită implicit și se dezactivează automat dacă browserul nu are voce. Fereastra pentru proiector nu vorbește (evită dublarea). **Limită:** calitatea și limba vocii depind de sistem; unele sisteme nu au voce românească și citesc cu accent străin; unele voci sunt furnizate online de producătorul browserului, în afara controlului aplicației.
+### Voice announcements (optional)
+The "Voice announcements" checkbox in Settings: at the warning and at the end, besides the bell, the app says aloud "Au rămas 2 minute." / "A rămas un minut." / "Au rămas N secunde." / "Timpul a expirat." (i.e. "2 minutes left." / "One minute left." / "N seconds left." / "Time is up."; in English when the language is En). It uses the browser's speech synthesis (`speechSynthesis`), respects the volume and the "Sound" switch (with the sound off, nothing is spoken), is off by default and is automatically disabled if the browser has no voice. The projector window does not speak (to avoid doubling). **Limit:** the quality and language of the voice depend on the system; some systems have no Romanian voice and read with a foreign accent; some voices are provided online by the browser's maker, outside the app's control.
 
-Interfața rămâne în română și engleză (comutatorul existent); textele noi au ambele variante. Nu am adăugat hu/de, fiindcă aplicația are doar un comutator ro/en; kitul are totuși interfața în 8 limbi.
+The interface remains in Romanian and English (the existing switch); the new texts have both variants. I did not add hu/de, because the app has only a ro/en switch; the kit, however, has its interface in 8 languages.
 
-### Transparență și copie de siguranță (fff-kit)
+### Transparency and backup copy (fff-kit)
 
-Un clic (sau Enter) pe versiunea afișată (`v 1.1.1 · 2026-10-18`) deschide fereastra „Transparență”: gazdele de rețea declarate (0 cereri externe), cheile de stocare locală cu dimensiuni, API-urile folosite, mărimea și SHA-256 al fișierului (cu verificator pentru un fișier descărcat) și **copia de siguranță** a datelor aplicației într-un fișier `.fff.json` (opțional criptat cu parolă, AES-GCM 256 / PBKDF2; parola nu poate fi recuperată), import cu confirmare și ștergerea datelor aplicației. Kitul (`fff-kit`, module: core, label, bundle) este lipit în `index.html`, nu face cereri de rețea și nu schimbă datele existente; fără el aplicația funcționează la fel. Textele kitului sunt în 8 limbi (ro, en, fr, it, es, pt, hu, de); **traducerile fr/it/es/pt/hu/de sunt automate și neverificate nativ**. Interfața aplicației însăși rămâne în română.
+A click (or Enter) on the displayed version (`v 1.1.1 · 2026-10-18`) opens the "Transparency" window: the declared network hosts (0 external requests), the local-storage keys with sizes, the APIs used, the size and SHA-256 of the file (with a checker for a downloaded file) and the **backup copy** of the app's data in a `.fff.json` file (optionally encrypted with a password, AES-GCM 256 / PBKDF2; the password cannot be recovered), import with confirmation and deletion of the app's data. The kit (`fff-kit`, modules: core, label, bundle) is pasted into `index.html`, makes no network requests and does not change existing data; without it the app works the same. The kit's texts are in 8 languages (ro, en, fr, it, es, pt, hu, de); **the fr/it/es/pt/hu/de translations are automatic and not natively verified**. The app's own interface remains in Romanian.
 
-## Scurtături
+## Shortcuts
 
-| Tastă | Acțiune |
+| Key | Action |
 |---|---|
-| Spațiu | Start / pauză |
-| N sau → | Următorul vorbitor |
-| P sau ← | Anterior |
-| R | Resetează |
-| + / − | Adaugă / scade un minut |
-| B | Sună clopoțelul |
-| M | Sunet pornit / oprit |
-| F | Ecran scenă |
+| Space | Start / pause |
+| N or → | Next speaker |
+| P or ← | Previous |
+| R | Reset |
+| + / − | Add / subtract one minute |
+| B | Ring the bell |
+| M | Sound on / off |
+| F | Stage screen |
 
-## Note
+## Notes
 
-- Butonul **English / Română** de lângă titlu comută interfața între română și engleză (alegerea se păstrează în browser; fereastra pentru proiector o urmează).
-- Butonul **Temă luminoasă/întunecată** schimbă tema (implicit întunecată, potrivită pentru scenă); alegerea se păstrează în browser. Tipărirea (Ctrl+P) produce doar agenda, în alb-negru.
-- Browserul blochează sunetul până la primul clic: apasă Start sau orice buton înainte de eveniment.
-- Datele (agenda, setările, starea cronometrului) se păstrează în browser (`localStorage`); după o reîncărcare, cronometrul continuă.
-- Ecranul rămâne aprins cât timp cronometrul rulează (Wake Lock, unde browserul îl suportă).
+- The **English / Română** button next to the title switches the interface between Romanian and English (the choice is kept in the browser; the projector window follows it).
+- The **Light/dark theme** button changes the theme (dark by default, suited to the stage); the choice is kept in the browser. Printing (Ctrl+P) produces only the agenda, in black and white.
+- The browser blocks sound until the first click: press Start or any button before the event.
+- The data (agenda, settings, timer state) is kept in the browser (`localStorage`); after a reload, the timer continues.
+- The screen stays on while the timer is running (Wake Lock, where the browser supports it).
 
-## Publicare cu GitHub Pages
+## Publishing with GitHub Pages
 
-Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Fișierul `.nojekyll` este deja inclus.
+Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. The `.nojekyll` file is already included.
 
-## Istoric / Changelog
+## History / Changelog
 
-### 1.1.1 — 18 octombrie 2026
-- Importul unei agende din fișier (`.json`, `.csv`, `.txt`) cere acum confirmare înainte de a înlocui agenda existentă (ca „Lipește lista”); dacă renunți, nici agenda, nici setările nu se schimbă. Nu există „anulează” după înlocuire: exportă agenda înainte să imporți.
+### 1.1.1 — 18 October 2026
+- Importing an agenda from a file (`.json`, `.csv`, `.txt`) now asks for confirmation before replacing the existing agenda (like "Paste list"); if you back out, neither the agenda nor the settings change. There is no "undo" after replacement: export the agenda before you import.
 
-### 1.1.0 — 14 octombrie 2026
-- Raport plan/real (+ CSV, tipărire); anunțuri vocale opționale; fff-kit (Transparență + copie de siguranță); secțiunile pliabile Setări și Raport sunt acum într-un punct de reper (`aside`) pentru accesibilitate (axe `region` era încălcat înainte).
+### 1.1.0 — 14 October 2026
+- Plan/actual report (+ CSV, printing); optional voice announcements; fff-kit (Transparency + backup copy); the collapsible Settings and Report sections are now in a landmark (`aside`) for accessibility (axe `region` was violated before).
 
-### 1.0.0 — 12 octombrie 2026
-- Versiunea și data ultimei actualizări sunt afișate în aplicație (subsol).
+### 1.0.0 — 12 October 2026
+- The version and the date of the last update are shown in the app (footer).
 
-### 11.10.2026 (a treia actualizare) — 11 octombrie 2026
-- Interfață în două limbi: română și engleză (buton lângă titlu), inclusiv etichete ARIA, mesaje, scurtături și text de ajutor; verificat cu axe în ambele limbi.
-- Linia „Avans/Întârziere față de plan” arată acum pe câte prezentări încheiate se bazează calculul (evită confuzia după o trecere rapidă peste vorbitori).
-- CSP: `connect-src 'none'` (aplicația nu face cereri de rețea).
+### 11.10.2026 (third update) — 11 October 2026
+- Interface in two languages: Romanian and English (button next to the title), including ARIA labels, messages, shortcuts and help text; verified with axe in both languages.
+- The "Ahead/Behind plan" line now shows how many finished presentations the calculation is based on (avoids confusion after a quick pass over the speakers).
+- CSP: `connect-src 'none'` (the app makes no network requests).
 
-### 11.10.2026 (a doua actualizare) — 11 octombrie 2026
-- Import agendă din text lipit sau din fișier `.csv`/`.txt` (rânduri `Vorbitor | Titlu | minute`), cu mesaj despre rândurile importate sau ajustate.
-- Temă luminoasă (contrast verificat cu axe) și stil de tipărire pentru agendă; fereastra pentru proiector urmează tema aleasă.
+### 11.10.2026 (second update) — 11 October 2026
+- Agenda import from pasted text or from a `.csv`/`.txt` file (lines `Vorbitor | Titlu | minute`), with a message about the imported or adjusted lines.
+- Light theme (contrast verified with axe) and a print style for the agenda; the projector window follows the chosen theme.
 
-### 11.10.2026 — 11 octombrie 2026
-- Fereastra pentru proiector: dacă browserul blochează fereastra pop-up, apare acum un mesaj clar cu pașii de urmat (în loc de nicio reacție).
-- Adăugat Content-Security-Policy strict (script cu hash, fără rețea); verificare axe fără încălcări.
+### 11.10.2026 — 11 October 2026
+- Projector window: if the browser blocks the pop-up window, a clear message with the steps to follow now appears (instead of no reaction).
+- Added a strict Content-Security-Policy (script by hash, no network); axe check with no violations.
 
-## Licență
+## Licence
 
-MIT — vezi [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
 
-Autor: Alexandru-Ionuț Chiuță (Alexio) · <alexio@trom.tf>
-
+Author: Alexandru-Ionuț Chiuță (Alexio) · <alexio@trom.tf>
