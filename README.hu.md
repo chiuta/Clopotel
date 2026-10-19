@@ -9,7 +9,7 @@ A felület nyelvei: **Română, English, Français, Italiano, Español, Portugu�
 Színpadi időmérő csengővel konferenciákhoz: korlátozza a program minden előadójának idejét.
 Egyetlen HTML-fájl, külső függőségek nélkül, teljesen offline működik („határok nélkül”, trade-free).
 
-![CLOPOȚEL](screenshot.png)
+![CLOPOȚEL](screenshot.hu.png)
 
 ## Használat
 

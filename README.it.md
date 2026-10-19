@@ -9,7 +9,7 @@ Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Por
 Cronometro da palco con campanello per le conferenze: limita il tempo di ogni relatore in programma.
 Un unico file HTML, senza dipendenze esterne, completamente offline («senza frontiere», trade-free).
 
-![CLOPOȚEL](screenshot.png)
+![CLOPOȚEL](screenshot.it.png)
 
 ## Utilizzo
 

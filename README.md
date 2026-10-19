@@ -9,7 +9,7 @@ Interface languages: **Română, English, Français, Italiano, Español, Portugu
 A stage timer with a bell for conferences: it limits each speaker's time on the agenda.
 A single HTML file, with no external dependencies, working fully offline ("without borders", trade-free).
 
-![CLOPOȚEL](screenshot.png)
+![CLOPOȚEL](screenshot.en.png)
 
 ## Usage
 

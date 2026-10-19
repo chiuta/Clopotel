@@ -9,7 +9,7 @@ Oberflächensprachen: **Română, English, Français, Italiano, Español, Portug
 Ein Bühnen-Timer mit Glocke für Konferenzen: Er begrenzt die Zeit jedes Redners im Programm.
 Eine einzige HTML-Datei, ohne externe Abhängigkeiten, die vollständig offline funktioniert („ohne Grenzen“, trade-free).
 
-![CLOPOȚEL](screenshot.png)
+![CLOPOȚEL](screenshot.de.png)
 
 ## Verwendung
 

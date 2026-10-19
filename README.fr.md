@@ -9,7 +9,7 @@ Langues de l'interface : **Română, English, Français, Italiano, Español, Por
 Chronomètre de scène avec clochette pour les conférences : il limite le temps de parole de chaque intervenant de l'ordre du jour.
 Un seul fichier HTML, sans dépendances externes, entièrement hors ligne (« sans frontières », trade-free).
 
-![CLOPOȚEL](screenshot.png)
+![CLOPOȚEL](screenshot.fr.png)
 
 ## Utilisation
 

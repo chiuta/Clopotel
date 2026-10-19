@@ -9,7 +9,7 @@ Idiomas da interface: **Română, English, Français, Italiano, Español, Portug
 Cronómetro de palco com campainha para conferências: limita o tempo de cada orador da agenda.
 Um único ficheiro HTML, sem dependências externas, que funciona totalmente offline («sem fronteiras», trade-free).
 
-![CLOPOȚEL](screenshot.png)
+![CLOPOȚEL](screenshot.pt.png)
 
 ## Utilização
 

@@ -9,7 +9,7 @@ Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Port
 Cronómetro de escenario con campanilla para conferencias: limita el tiempo de cada ponente del programa.
 Un único archivo HTML, sin dependencias externas, que funciona totalmente sin conexión («sin fronteras», trade-free).
 
-![CLOPOȚEL](screenshot.png)
+![CLOPOȚEL](screenshot.es.png)
 
 ## Uso
 
