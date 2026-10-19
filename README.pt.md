@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.1.1 · **Última atualização:** 2026-10-18
+**Versão:** 1.2.0 · **Última atualização:** 2026-10-19
+
+Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Cronómetro de palco com campainha para conferências: limita o tempo de cada orador da agenda.
 Um único ficheiro HTML, sem dependências externas, que funciona totalmente offline («sem fronteiras», trade-free).
@@ -27,7 +29,7 @@ A secção recolhível «Relatório: previsto face ao real» (por baixo de Defin
 ### Anúncios por voz (opcional)
 A caixa «Anúncios por voz» nas Definições: no aviso e no fim, além da campainha, diz-se em voz alta «Au rămas 2 minute.» / «A rămas un minut.» / «Au rămas N secunde.» / «Timpul a expirat.» (isto é, «Faltam 2 minutos.» / «Falta um minuto.» / «Faltam N segundos.» / «O tempo esgotou-se.»; em inglês quando o idioma é En). Usa a síntese de voz do navegador (`speechSynthesis`), respeita o volume e o interruptor «Som» (com o som desligado não se fala), está desativada por predefinição e desativa-se automaticamente se o navegador não tiver voz. A janela para o projetor não fala (para evitar duplicação). **Limite:** a qualidade e o idioma da voz dependem do sistema; alguns sistemas não têm voz romena e leem com sotaque estrangeiro; algumas vozes são fornecidas online pelo fabricante do navegador, fora do controlo da aplicação.
 
-A interface continua em romeno e inglês (o interruptor existente); os textos novos têm ambas as variantes. Não acrescentei hu/de, porque a aplicação tem apenas um interruptor ro/en; o kit, porém, tem a interface em 8 idiomas.
+A interface tem 8 idiomas (RO, EN, FR, IT, ES, PT, DE, HU), escolhidos no seletor de idioma; o kit também tem a interface em 8 idiomas.
 
 ### Transparência e cópia de segurança (fff-kit)
 
@@ -48,7 +50,7 @@ Um clique (ou Enter) na versão apresentada (`v 1.1.1 · 2026-10-18`) abre a jan
 
 ## Notas
 
-- O botão **English / Română** junto ao título alterna a interface entre romeno e inglês (a escolha é guardada no navegador; a janela para o projetor acompanha-a).
+- O seletor de idioma junto ao título alterna a interface entre os 8 idiomas (a escolha é guardada no navegador; a janela para o projetor acompanha-a).
 - O botão **Tema claro/escuro** muda o tema (escuro por predefinição, adequado ao palco); a escolha é guardada no navegador. A impressão (Ctrl+P) produz apenas a agenda, a preto e branco.
 - O navegador bloqueia o som até ao primeiro clique: prima Start ou qualquer botão antes do evento.
 - Os dados (agenda, definições, estado do cronómetro) são guardados no navegador (`localStorage`); após um recarregamento, o cronómetro continua.

@@ -2,7 +2,9 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.1.1 · **Last updated:** 2026-10-18
+**Version:** 1.2.0 · **Last updated:** 2026-10-19
+
+Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 A stage timer with a bell for conferences: it limits each speaker's time on the agenda.
 A single HTML file, with no external dependencies, working fully offline ("without borders", trade-free).
@@ -27,7 +29,7 @@ The collapsible section "Report: plan versus actual" (under Settings) shows, for
 ### Voice announcements (optional)
 The "Voice announcements" checkbox in Settings: at the warning and at the end, besides the bell, the app says aloud "Au rămas 2 minute." / "A rămas un minut." / "Au rămas N secunde." / "Timpul a expirat." (i.e. "2 minutes left." / "One minute left." / "N seconds left." / "Time is up."; in English when the language is En). It uses the browser's speech synthesis (`speechSynthesis`), respects the volume and the "Sound" switch (with the sound off, nothing is spoken), is off by default and is automatically disabled if the browser has no voice. The projector window does not speak (to avoid doubling). **Limit:** the quality and language of the voice depend on the system; some systems have no Romanian voice and read with a foreign accent; some voices are provided online by the browser's maker, outside the app's control.
 
-The interface remains in Romanian and English (the existing switch); the new texts have both variants. I did not add hu/de, because the app has only a ro/en switch; the kit, however, has its interface in 8 languages.
+The interface has 8 languages (RO, EN, FR, IT, ES, PT, DE, HU), chosen from the language selector; the kit has its interface in 8 languages as well.
 
 ### Transparency and backup copy (fff-kit)
 
@@ -48,7 +50,7 @@ A click (or Enter) on the displayed version (`v 1.1.1 · 2026-10-18`) opens the 
 
 ## Notes
 
-- The **English / Română** button next to the title switches the interface between Romanian and English (the choice is kept in the browser; the projector window follows it).
+- The language selector next to the title switches the interface among the 8 languages (the choice is kept in the browser; the projector window follows it).
 - The **Light/dark theme** button changes the theme (dark by default, suited to the stage); the choice is kept in the browser. Printing (Ctrl+P) produces only the agenda, in black and white.
 - The browser blocks sound until the first click: press Start or any button before the event.
 - The data (agenda, settings, timer state) is kept in the browser (`localStorage`); after a reload, the timer continues.

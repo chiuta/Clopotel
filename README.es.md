@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.1.1 · **Última actualización:** 2026-10-18
+**Versión:** 1.2.0 · **Última actualización:** 2026-10-19
+
+Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Cronómetro de escenario con campanilla para conferencias: limita el tiempo de cada ponente del programa.
 Un único archivo HTML, sin dependencias externas, que funciona totalmente sin conexión («sin fronteras», trade-free).
@@ -27,7 +29,7 @@ La sección plegable «Informe: previsto frente a real» (bajo Ajustes) muestra,
 ### Anuncios por voz (opcional)
 La casilla «Anuncios por voz» en Ajustes: en el aviso y al final, además de la campanilla, se dice en voz alta «Au rămas 2 minute.» / «A rămas un minut.» / «Au rămas N secunde.» / «Timpul a expirat.» (es decir, «Quedan 2 minutos.» / «Queda un minuto.» / «Quedan N segundos.» / «El tiempo ha terminado.»; en inglés cuando el idioma es En). Usa la síntesis de voz del navegador (`speechSynthesis`), respeta el volumen y el interruptor «Sonido» (con el sonido apagado no se habla), está desactivada por defecto y se desactiva automáticamente si el navegador no tiene voz. La ventana para el proyector no habla (para evitar duplicados). **Límite:** la calidad y el idioma de la voz dependen del sistema; algunos sistemas no tienen voz rumana y leen con acento extranjero; algunas voces las proporciona en línea el fabricante del navegador, fuera del control de la aplicación.
 
-La interfaz sigue en rumano e inglés (el interruptor existente); los textos nuevos tienen ambas variantes. No he añadido hu/de, porque la aplicación solo tiene un interruptor ro/en; el kit, en cambio, tiene su interfaz en 8 idiomas.
+La interfaz tiene 8 idiomas (RO, EN, FR, IT, ES, PT, DE, HU), que se eligen en el selector de idioma; el kit también tiene su interfaz en 8 idiomas.
 
 ### Transparencia y copia de seguridad (fff-kit)
 
@@ -48,7 +50,7 @@ Un clic (o Intro) en la versión mostrada (`v 1.1.1 · 2026-10-18`) abre la vent
 
 ## Notas
 
-- El botón **English / Română** junto al título cambia la interfaz entre rumano e inglés (la elección se guarda en el navegador; la ventana para el proyector la sigue).
+- El selector de idioma junto al título cambia la interfaz entre los 8 idiomas (la elección se guarda en el navegador; la ventana para el proyector la sigue).
 - El botón **Tema claro/oscuro** cambia el tema (oscuro por defecto, adecuado para el escenario); la elección se guarda en el navegador. La impresión (Ctrl+P) produce solo el programa, en blanco y negro.
 - El navegador bloquea el sonido hasta el primer clic: pulsa Start o cualquier botón antes del evento.
 - Los datos (programa, ajustes, estado del cronómetro) se guardan en el navegador (`localStorage`); tras una recarga, el cronómetro continúa.

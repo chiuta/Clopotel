@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.1.1 · **Zuletzt aktualisiert:** 2026-10-18
+**Version:** 1.2.0 · **Zuletzt aktualisiert:** 2026-10-19
+
+Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Ein Bühnen-Timer mit Glocke für Konferenzen: Er begrenzt die Zeit jedes Redners im Programm.
 Eine einzige HTML-Datei, ohne externe Abhängigkeiten, die vollständig offline funktioniert („ohne Grenzen“, trade-free).
@@ -27,7 +29,7 @@ Der einklappbare Abschnitt „Bericht: Plan gegenüber Ist“ (unter Einstellung
 ### Sprachansagen (optional)
 Das Kontrollkästchen „Sprachansagen“ in den Einstellungen: Bei der Warnung und am Ende wird zusätzlich zur Glocke laut „Au rămas 2 minute.“ / „A rămas un minut.“ / „Au rămas N secunde.“ / „Timpul a expirat.“ gesprochen (also „Noch 2 Minuten.“ / „Noch eine Minute.“ / „Noch N Sekunden.“ / „Die Zeit ist abgelaufen.“; auf Englisch, wenn die Sprache En ist). Es nutzt die Sprachsynthese des Browsers (`speechSynthesis`), beachtet die Lautstärke und den Schalter „Ton“ (bei ausgeschaltetem Ton wird nicht gesprochen), ist standardmäßig aus und deaktiviert sich automatisch, wenn der Browser keine Stimme hat. Das Projektorfenster spricht nicht (um Doppelungen zu vermeiden). **Einschränkung:** Qualität und Sprache der Stimme hängen vom System ab; manche Systeme haben keine rumänische Stimme und lesen mit fremdem Akzent; manche Stimmen werden online vom Browserhersteller bereitgestellt, außerhalb der Kontrolle der Anwendung.
 
-Die Oberfläche bleibt auf Rumänisch und Englisch (der bestehende Schalter); die neuen Texte gibt es in beiden Varianten. Ich habe hu/de nicht hinzugefügt, da die Anwendung nur einen ro/en-Schalter hat; das Kit hat jedoch seine Oberfläche in 8 Sprachen.
+Die Oberfläche hat 8 Sprachen (RO, EN, FR, IT, ES, PT, DE, HU), die im Sprachwähler ausgewählt werden; auch das Kit hat seine Oberfläche in 8 Sprachen.
 
 ### Transparenz und Sicherungskopie (fff-kit)
 
@@ -48,7 +50,7 @@ Ein Klick (oder Eingabe) auf die angezeigte Version (`v 1.1.1 · 2026-10-18`) ö
 
 ## Hinweise
 
-- Die Schaltfläche **English / Română** neben dem Titel schaltet die Oberfläche zwischen Rumänisch und Englisch um (die Auswahl wird im Browser gespeichert; das Projektorfenster folgt ihr).
+- Der Sprachwähler neben dem Titel schaltet die Oberfläche zwischen den 8 Sprachen um (die Auswahl wird im Browser gespeichert; das Projektorfenster folgt ihr).
 - Die Schaltfläche **Helles/dunkles Design** wechselt das Design (standardmäßig dunkel, passend für die Bühne); die Auswahl wird im Browser gespeichert. Der Druck (Strg+P) erzeugt nur das Programm, in Schwarzweiß.
 - Der Browser blockiert den Ton bis zum ersten Klick: Drücken Sie vor der Veranstaltung Start oder eine beliebige Schaltfläche.
 - Die Daten (Programm, Einstellungen, Timer-Zustand) werden im Browser gespeichert (`localStorage`); nach einem Neuladen läuft der Timer weiter.

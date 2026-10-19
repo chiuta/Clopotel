@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.1.1 · **Ultimo aggiornamento:** 2026-10-18
+**Versione:** 1.2.0 · **Ultimo aggiornamento:** 2026-10-19
+
+Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Cronometro da palco con campanello per le conferenze: limita il tempo di ogni relatore in programma.
 Un unico file HTML, senza dipendenze esterne, completamente offline («senza frontiere», trade-free).
@@ -27,7 +29,7 @@ La sezione comprimibile «Resoconto: previsto e reale» (sotto Impostazioni) mos
 ### Annunci vocali (facoltativo)
 La casella «Annunci vocali» nelle Impostazioni: all'avviso e alla fine, oltre al campanello, viene detto a voce alta «Au rămas 2 minute.» / «A rămas un minut.» / «Au rămas N secunde.» / «Timpul a expirat.» (cioè «Mancano 2 minuti.» / «Manca un minuto.» / «Mancano N secondi.» / «Il tempo è scaduto.»; in inglese quando la lingua è En). Usa la sintesi vocale del browser (`speechSynthesis`), rispetta il volume e l'interruttore «Suono» (con il suono disattivato non si parla), è disattivata per impostazione predefinita e si disattiva automaticamente se il browser non ha voci. La finestra per il proiettore non parla (per evitare il doppione). **Limite:** la qualità e la lingua della voce dipendono dal sistema; alcuni sistemi non hanno una voce rumena e leggono con accento straniero; alcune voci sono fornite online dal produttore del browser, fuori dal controllo dell'applicazione.
 
-L'interfaccia resta in rumeno e inglese (l'interruttore esistente); i nuovi testi hanno entrambe le varianti. Non ho aggiunto hu/de, perché l'applicazione ha solo un interruttore ro/en; il kit, invece, ha l'interfaccia in 8 lingue.
+L'interfaccia ha 8 lingue (RO, EN, FR, IT, ES, PT, DE, HU), scelte dal selettore di lingua; anche il kit ha l'interfaccia in 8 lingue.
 
 ### Trasparenza e copia di riserva (fff-kit)
 
@@ -48,7 +50,7 @@ Un clic (o Invio) sulla versione mostrata (`v 1.1.1 · 2026-10-18`) apre la fine
 
 ## Note
 
-- Il pulsante **English / Română** accanto al titolo commuta l'interfaccia tra rumeno e inglese (la scelta viene conservata nel browser; la finestra per il proiettore la segue).
+- Il selettore di lingua accanto al titolo commuta l'interfaccia tra le 8 lingue (la scelta viene conservata nel browser; la finestra per il proiettore la segue).
 - Il pulsante **Tema chiaro/scuro** cambia il tema (scuro per impostazione predefinita, adatto al palco); la scelta viene conservata nel browser. La stampa (Ctrl+P) produce solo il programma, in bianco e nero.
 - Il browser blocca l'audio fino al primo clic: premi Start o un qualsiasi pulsante prima dell'evento.
 - I dati (programma, impostazioni, stato del cronometro) vengono conservati nel browser (`localStorage`); dopo un ricaricamento, il cronometro continua.

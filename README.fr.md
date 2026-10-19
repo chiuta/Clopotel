@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.1.1 · **Dernière mise à jour :** 2026-10-18
+**Version :** 1.2.0 · **Dernière mise à jour :** 2026-10-19
+
+Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Chronomètre de scène avec clochette pour les conférences : il limite le temps de parole de chaque intervenant de l'ordre du jour.
 Un seul fichier HTML, sans dépendances externes, entièrement hors ligne (« sans frontières », trade-free).
@@ -27,7 +29,7 @@ La section repliable « Rapport : prévu et réel » (sous Paramètres) affiche,
 ### Annonces vocales (facultatif)
 La case « Annonces vocales » dans les Paramètres : à l'avertissement et à la fin, en plus de la clochette, l'application dit à voix haute « Au rămas 2 minute. » / « A rămas un minut. » / « Au rămas N secunde. » / « Timpul a expirat. » (c'est-à-dire « Il reste 2 minutes. » / « Il reste une minute. » / « Il reste N secondes. » / « Le temps est écoulé. » ; en anglais lorsque la langue est En). Elle utilise la synthèse vocale du navigateur (`speechSynthesis`), respecte le volume et l'interrupteur « Son » (son coupé, aucune parole), est désactivée par défaut et se désactive automatiquement si le navigateur n'a pas de voix. La fenêtre pour le projecteur ne parle pas (pour éviter le doublon). **Limite :** la qualité et la langue de la voix dépendent du système ; certains systèmes n'ont pas de voix roumaine et lisent avec un accent étranger ; certaines voix sont fournies en ligne par l'éditeur du navigateur, hors du contrôle de l'application.
 
-L'interface reste en roumain et en anglais (l'interrupteur existant) ; les nouveaux textes existent dans les deux variantes. Je n'ai pas ajouté hu/de, car l'application n'a qu'un interrupteur ro/en ; le kit, lui, a son interface en 8 langues.
+L'interface compte 8 langues (RO, EN, FR, IT, ES, PT, DE, HU), choisies dans le sélecteur de langue ; le kit a lui aussi son interface en 8 langues.
 
 ### Transparence et copie de sauvegarde (fff-kit)
 
@@ -48,7 +50,7 @@ Un clic (ou Entrée) sur la version affichée (`v 1.1.1 · 2026-10-18`) ouvre la
 
 ## Notes
 
-- Le bouton **English / Română** à côté du titre fait basculer l'interface entre le roumain et l'anglais (le choix est conservé dans le navigateur ; la fenêtre pour le projecteur le suit).
+- Le sélecteur de langue à côté du titre fait basculer l'interface entre les 8 langues (le choix est conservé dans le navigateur ; la fenêtre pour le projecteur le suit).
 - Le bouton **Thème clair/sombre** change le thème (sombre par défaut, adapté à la scène) ; le choix est conservé dans le navigateur. L'impression (Ctrl+P) ne produit que l'ordre du jour, en noir et blanc.
 - Le navigateur bloque le son jusqu'au premier clic : appuyez sur Start ou sur n'importe quel bouton avant l'événement.
 - Les données (ordre du jour, paramètres, état du chronomètre) sont conservées dans le navigateur (`localStorage`) ; après un rechargement, le chronomètre continue.

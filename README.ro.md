@@ -2,7 +2,9 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.1.1 · **Ultima actualizare:** 2026-10-18
+**Versiune:** 1.2.0 · **Ultima actualizare:** 2026-10-19
+
+Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Cronometru de scenă cu clopoțel pentru conferințe: limitează timpul fiecărui vorbitor din agendă.
 Un singur fișier HTML, fără dependențe externe, funcționează complet offline („fără frontiere”, trade-free).
@@ -27,7 +29,7 @@ Secțiunea pliabilă „Raport: plan față de real” (sub Setări) arată, pen
 ### Anunțuri vocale (opțional)
 Căsuța „Anunțuri vocale” din Setări: la avertizare și la final, pe lângă clopoțel, se spune cu voce tare „Au rămas 2 minute.” / „A rămas un minut.” / „Au rămas N secunde.” / „Timpul a expirat.” (în engleză la limba En). Folosește sinteza vocală a browserului (`speechSynthesis`), respectă volumul și comutatorul „Sunet” (cu sunetul oprit nu se vorbește), este oprită implicit și se dezactivează automat dacă browserul nu are voce. Fereastra pentru proiector nu vorbește (evită dublarea). **Limită:** calitatea și limba vocii depind de sistem; unele sisteme nu au voce românească și citesc cu accent străin; unele voci sunt furnizate online de producătorul browserului, în afara controlului aplicației.
 
-Interfața rămâne în română și engleză (comutatorul existent); textele noi au ambele variante. Nu am adăugat hu/de, fiindcă aplicația are doar un comutator ro/en; kitul are totuși interfața în 8 limbi.
+Interfața are 8 limbi (RO, EN, FR, IT, ES, PT, DE, HU), alese din selectorul de limbă; și kitul are interfața în 8 limbi.
 
 ### Transparență și copie de siguranță (fff-kit)
 
@@ -48,7 +50,7 @@ Un clic (sau Enter) pe versiunea afișată (`v 1.1.1 · 2026-10-18`) deschide fe
 
 ## Note
 
-- Butonul **English / Română** de lângă titlu comută interfața între română și engleză (alegerea se păstrează în browser; fereastra pentru proiector o urmează).
+- Selectorul de limbă de lângă titlu comută interfața între cele 8 limbi (alegerea se păstrează în browser; fereastra pentru proiector o urmează).
 - Butonul **Temă luminoasă/întunecată** schimbă tema (implicit întunecată, potrivită pentru scenă); alegerea se păstrează în browser. Tipărirea (Ctrl+P) produce doar agenda, în alb-negru.
 - Browserul blochează sunetul până la primul clic: apasă Start sau orice buton înainte de eveniment.
 - Datele (agenda, setările, starea cronometrului) se păstrează în browser (`localStorage`); după o reîncărcare, cronometrul continuă.

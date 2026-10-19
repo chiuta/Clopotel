@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.1.1 · **Utolsó frissítés:** 2026-10-18
+**Verzió:** 1.2.0 · **Utolsó frissítés:** 2026-10-19
+
+A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
 Színpadi időmérő csengővel konferenciákhoz: korlátozza a program minden előadójának idejét.
 Egyetlen HTML-fájl, külső függőségek nélkül, teljesen offline működik („határok nélkül”, trade-free).
@@ -27,7 +29,7 @@ Az összecsukható „Jelentés: terv és tény” szakasz (a Beállítások ala
 ### Hangbemondások (opcionális)
 A „Hangbemondások” jelölőnégyzet a Beállításokban: a figyelmeztetéskor és a végén a csengő mellett hangosan elhangzik, hogy „Au rămas 2 minute.” / „A rămas un minut.” / „Au rămas N secunde.” / „Timpul a expirat.” (vagyis „2 perc van hátra.” / „Egy perc van hátra.” / „N másodperc van hátra.” / „Az idő lejárt.”; angolul, ha a nyelv En). A böngésző beszédszintézisét használja (`speechSynthesis`), tiszteletben tartja a hangerőt és a „Hang” kapcsolót (kikapcsolt hangnál nem beszél), alapértelmezés szerint ki van kapcsolva, és automatikusan letiltódik, ha a böngészőnek nincs hangja. A kivetítő ablaka nem beszél (a duplázás elkerülése végett). **Korlát:** a hang minősége és nyelve a rendszertől függ; egyes rendszereken nincs román hang, és idegen akcentussal olvasnak; egyes hangokat online a böngésző gyártója biztosít, az alkalmazás ellenőrzésén kívül.
 
-A felület román és angol nyelvű marad (a meglévő kapcsoló); az új szövegek mindkét változattal rendelkeznek. A hu/de nyelvet nem adtam hozzá, mert az alkalmazásnak csak egy ro/en kapcsolója van; a készlet (kit) felülete viszont 8 nyelvű.
+A felület 8 nyelvű (RO, EN, FR, IT, ES, PT, DE, HU), a nyelvválasztóból választható; a készlet (kit) felülete is 8 nyelvű.
 
 ### Átláthatóság és biztonsági másolat (fff-kit)
 
@@ -48,7 +50,7 @@ A megjelenített verzióra (`v 1.1.1 · 2026-10-18`) kattintva (vagy Entert nyom
 
 ## Megjegyzések
 
-- A cím melletti **English / Română** gomb vált a felület román és angol nyelve között (a választás a böngészőben marad; a kivetítő ablaka követi).
+- A cím melletti nyelvválasztó vált a felület 8 nyelve között (a választás a böngészőben marad; a kivetítő ablaka követi).
 - A **Világos/sötét téma** gomb váltja a témát (alapértelmezés szerint sötét, színpadhoz illő); a választás a böngészőben marad. A nyomtatás (Ctrl+P) csak a programot állítja elő, fekete-fehérben.
 - A böngésző az első kattintásig letiltja a hangot: az esemény előtt nyomd meg a Start vagy bármelyik gombot.
 - Az adatok (program, beállítások, az időmérő állapota) a böngészőben tárolódnak (`localStorage`); újratöltés után az időmérő folytatódik.
