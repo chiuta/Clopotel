@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.0 · **Utolsó frissítés:** 2026-10-19
+**Verzió:** 1.2.1 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,10 @@ A megjelenített verzióra (`v 1.1.1 · 2026-10-18`) kattintva (vagy Entert nyom
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. A `.nojekyll` fájl már benne van.
 
 ## Előzmények / Változásnapló
+
+### 1.2.1 — 2026-10-22
+- A fájlimportálási hibák (üres fájl, érvénytelen JSON) és a blokkolt felugró ablak üzenete már nem blokkoló `alert()` párbeszédablakok: nem modális értesítésként jelennek meg az aktuális nyelven (a képernyőolvasók is felolvassák).
+- Mobil: a hangerő-csúszka és a két jelölőnégyzet nagyobb érintési felületű; a lábléc verziócímkéje most az aktuális verziót mutatja.
 
 ### 1.1.1 — 2026. október 18.
 - Egy program fájlból (`.json`, `.csv`, `.txt`) történő importálása mostantól megerősítést kér a meglévő program lecserélése előtt (mint a „Lista beillesztése”); ha letérsz róla, sem a program, sem a beállítások nem változnak. A csere után nincs „visszavonás”: importálás előtt exportáld a programot.

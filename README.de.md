@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.2.0 · **Zuletzt aktualisiert:** 2026-10-19
+**Version:** 1.2.1 · **Zuletzt aktualisiert:** 2026-10-22
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,10 @@ Ein Klick (oder Eingabe) auf die angezeigte Version (`v 1.1.1 · 2026-10-18`) ö
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Die Datei `.nojekyll` ist bereits enthalten.
 
 ## Verlauf / Changelog
+
+### 1.2.1 — 2026-10-22
+- Fehler beim Dateiimport (leere Datei, ungültiges JSON) und die Meldung zum blockierten Popup sind keine blockierenden `alert()`-Dialoge mehr: Sie erscheinen als nicht-modale Benachrichtigung in der aktuellen Sprache (auch für Screenreader angekündigt).
+- Mobil: Der Lautstärkeregler und die beiden Kontrollkästchen haben größere Tippflächen; die Versionsangabe in der Fußzeile zeigt jetzt die aktuelle Version.
 
 ### 1.1.1 — 18. Oktober 2026
 - Der Import eines Programms aus einer Datei (`.json`, `.csv`, `.txt`) verlangt jetzt eine Bestätigung, bevor das bestehende Programm ersetzt wird (wie bei „Liste einfügen“); wenn Sie verzichten, ändern sich weder das Programm noch die Einstellungen. Nach dem Ersetzen gibt es kein „Rückgängig“: Exportieren Sie das Programm vor dem Import.

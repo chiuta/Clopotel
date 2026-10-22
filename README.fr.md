@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.2.0 · **Dernière mise à jour :** 2026-10-19
+**Version :** 1.2.1 · **Dernière mise à jour :** 2026-10-22
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,10 @@ Un clic (ou Entrée) sur la version affichée (`v 1.1.1 · 2026-10-18`) ouvre la
 Settings → Pages → Source : *Deploy from a branch* → `main` / `(root)`. Le fichier `.nojekyll` est déjà inclus.
 
 ## Historique / Journal des modifications
+
+### 1.2.1 — 2026-10-22
+- Les erreurs d'importation de fichier (fichier vide, JSON invalide) et le message de fenêtre bloquée ne sont plus des boîtes `alert()` bloquantes : elles s'affichent comme une notification non modale dans la langue courante (annoncée aussi aux lecteurs d'écran).
+- Mobile : le curseur de volume et les deux cases à cocher ont des zones tactiles plus grandes ; l'étiquette de version du pied de page affiche maintenant la version actuelle.
 
 ### 1.1.1 — 18 octobre 2026
 - L'importation d'un ordre du jour depuis un fichier (`.json`, `.csv`, `.txt`) demande désormais une confirmation avant de remplacer l'ordre du jour existant (comme « Coller une liste ») ; si vous renoncez, ni l'ordre du jour ni les paramètres ne changent. Il n'y a pas d'« annulation » après le remplacement : exportez l'ordre du jour avant d'importer.

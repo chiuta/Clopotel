@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.0 · **Ultima actualizare:** 2026-10-19
+**Versiune:** 1.2.1 · **Ultima actualizare:** 2026-10-22
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,10 @@ Un clic (sau Enter) pe versiunea afișată (`v 1.1.1 · 2026-10-18`) deschide fe
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Fișierul `.nojekyll` este deja inclus.
 
 ## Istoric / Changelog
+
+### 1.2.1 — 2026-10-22
+- Erorile la importul fișierelor (fișier gol, JSON invalid) și mesajul despre fereastra blocată nu mai sunt dialoguri blocante `alert()`: apar ca notificare nemodală în limba curentă (anunțată și cititoarelor de ecran).
+- Mobil: glisorul de volum și cele două căsuțe de bifat au ținte tactile mai mari; eticheta de versiune din subsol arată acum versiunea curentă.
 
 ### 1.1.1 — 18 octombrie 2026
 - Importul unei agende din fișier (`.json`, `.csv`, `.txt`) cere acum confirmare înainte de a înlocui agenda existentă (ca „Lipește lista”); dacă renunți, nici agenda, nici setările nu se schimbă. Nu există „anulează” după înlocuire: exportă agenda înainte să imporți.

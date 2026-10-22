@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.0 · **Ultimo aggiornamento:** 2026-10-19
+**Versione:** 1.2.1 · **Ultimo aggiornamento:** 2026-10-22
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,10 @@ Un clic (o Invio) sulla versione mostrata (`v 1.1.1 · 2026-10-18`) apre la fine
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Il file `.nojekyll` è già incluso.
 
 ## Cronologia / Changelog
+
+### 1.2.1 — 2026-10-22
+- Gli errori di importazione dei file (file vuoto, JSON non valido) e il messaggio della finestra bloccata non sono più finestre `alert()` bloccanti: compaiono come notifica non modale nella lingua corrente (annunciata anche agli screen reader).
+- Mobile: il cursore del volume e le due caselle di controllo hanno aree di tocco più grandi; l'etichetta della versione nel piè di pagina mostra ora la versione corrente.
 
 ### 1.1.1 — 18 ottobre 2026
 - L'importazione di un programma da file (`.json`, `.csv`, `.txt`) chiede ora conferma prima di sostituire il programma esistente (come «Incolla elenco»); se rinunci, né il programma né le impostazioni cambiano. Dopo la sostituzione non esiste un «annulla»: esporta il programma prima di importare.

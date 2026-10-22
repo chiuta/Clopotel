@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.0 · **Última atualização:** 2026-10-19
+**Versão:** 1.2.1 · **Última atualização:** 2026-10-22
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,10 @@ Um clique (ou Enter) na versão apresentada (`v 1.1.1 · 2026-10-18`) abre a jan
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. O ficheiro `.nojekyll` já está incluído.
 
 ## Histórico / Registo de alterações
+
+### 1.2.1 — 2026-10-22
+- Os erros de importação de ficheiros (ficheiro vazio, JSON inválido) e a mensagem de janela bloqueada deixam de ser caixas `alert()` bloqueantes: surgem como uma notificação não modal no idioma atual (anunciada também aos leitores de ecrã).
+- Telemóvel: o controlo de volume e as duas caixas de seleção têm áreas de toque maiores; a etiqueta de versão do rodapé mostra agora a versão atual.
 
 ### 1.1.1 — 18 de outubro de 2026
 - A importação de uma agenda a partir de um ficheiro (`.json`, `.csv`, `.txt`) pede agora confirmação antes de substituir a agenda existente (como «Colar lista»); se desistir, nem a agenda nem as definições mudam. Não existe «anular» depois da substituição: exporte a agenda antes de importar.
