@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.1 · **Last updated:** 2026-10-22
+**Version:** 1.2.2 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,9 @@ A click (or Enter) on the displayed version (`v 1.1.1 · 2026-10-18`) opens the 
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. The `.nojekyll` file is already included.
 
 ## History / Changelog
+
+### 1.2.2 — 2026-10-22
+- fff-kit 1.1.2: PBKDF2 600,000 iterations, anti-clickjacking protection
 
 ### 1.2.1 — 2026-10-22
 - The file-import errors (empty file, invalid JSON) and the blocked pop-up message are no longer blocking `alert()` dialogs: they appear as a non-modal notification in the current language (also announced to screen readers).

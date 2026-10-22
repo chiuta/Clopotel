@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.1 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.2.2 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,9 @@ A megjelenített verzióra (`v 1.1.1 · 2026-10-18`) kattintva (vagy Entert nyom
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. A `.nojekyll` fájl már benne van.
 
 ## Előzmények / Változásnapló
+
+### 1.2.2 — 2026-10-22
+- fff-kit 1.1.2: PBKDF2 600 000 iteráció, clickjacking elleni védelem
 
 ### 1.2.1 — 2026-10-22
 - A fájlimportálási hibák (üres fájl, érvénytelen JSON) és a blokkolt felugró ablak üzenete már nem blokkoló `alert()` párbeszédablakok: nem modális értesítésként jelennek meg az aktuális nyelven (a képernyőolvasók is felolvassák).
