@@ -2,7 +2,7 @@
   "schema": 1,
   "slug": "clopotel",
   "name": "CLOPOȚEL — cronometru de scenă",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "updated": "2026-10-23",
   "description": "Cronometru de scenă cu clopoțel pentru conferințe: limitează timpul fiecărui vorbitor din agendă. Un singur fișier HTML, funcționează complet offline.",
   "egress": [],
@@ -13,8 +13,8 @@
     "Worker"
   ],
   "storageKeys": [],
-  "sizeBytes": 231107,
-  "sha256": "1fbfbc4cac25cbc4a9780ff80507d7f24c0e8c50191ca94cc9849ed3ba749875",
+  "sizeBytes": 231600,
+  "sha256": "7d9d2c886eae16ed165a340f2897cea5123a35208749919f46457aa9c7d559d1",
   "csp": {
     "present": true,
     "directives": {

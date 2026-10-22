@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.2.4 · **Última actualización:** 2026-10-23
+**Versión:** 1.2.5 · **Última actualización:** 2026-10-23
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,9 @@ Un clic (o Intro) en la versión mostrada (`v 1.1.1 · 2026-10-18`) abre la vent
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. El archivo `.nojekyll` ya está incluido.
 
 ## Historial / Registro de cambios
+
+### 1.2.5 — 2026-10-23
+- Los cuadros nativos alert/confirm/prompt se sustituyen por diálogos FFF.dialog accesibles y traducidos (fff-kit 1.2.0).
 
 ### 1.2.3 — 2026-10-22
 - fff-kit 1.1.4: objetivos táctiles y tamaño mínimo de texto; objetivos táctiles/texto corregidos

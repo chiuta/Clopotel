@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.4 · **Ultimo aggiornamento:** 2026-10-23
+**Versione:** 1.2.5 · **Ultimo aggiornamento:** 2026-10-23
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,9 @@ Un clic (o Invio) sulla versione mostrata (`v 1.1.1 · 2026-10-18`) apre la fine
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. Il file `.nojekyll` è già incluso.
 
 ## Cronologia / Changelog
+
+### 1.2.5 — 2026-10-23
+- Le finestre native alert/confirm/prompt sono sostituite da dialoghi FFF.dialog accessibili e tradotti (fff-kit 1.2.0).
 
 ### 1.2.3 — 2026-10-22
 - fff-kit 1.1.4: target touch e dimensione minima del testo; target touch/testo corretti

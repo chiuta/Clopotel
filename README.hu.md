@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.4 · **Utolsó frissítés:** 2026-10-23
+**Verzió:** 1.2.5 · **Utolsó frissítés:** 2026-10-23
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,9 @@ A megjelenített verzióra (`v 1.1.1 · 2026-10-18`) kattintva (vagy Entert nyom
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. A `.nojekyll` fájl már benne van.
 
 ## Előzmények / Változásnapló
+
+### 1.2.5 — 2026-10-23
+- A natív alert/confirm/prompt ablakokat akadálymentes, lefordított FFF.dialog párbeszédablakok váltották fel (fff-kit 1.2.0).
 
 ### 1.2.3 — 2026-10-22
 - fff-kit 1.1.4: érintési célpontok és minimális szövegméret; érintési célpontok/szöveg javítva

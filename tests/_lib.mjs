@@ -58,3 +58,18 @@ export async function kitLabel(page, slug) {
   await page.keyboard.press("Escape");
   await page.waitForTimeout(200);
 }
+
+// FFF.dialog (kit 1.2.0) înlocuiește window.confirm: răspunde la dialogul <dialog data-fff-dialog> (yes = ultimul buton, no = primul). Se apelează ÎNAINTE de acțiune, apoi `await r.done`.
+export function answerDialog(page, yes = true, timeout = 2500) {
+  const out = {msg: "", shown: false};
+  out.done = (async () => {
+    try {
+      await page.waitForSelector("dialog[data-fff-dialog][open]", {timeout, state: "attached"});
+      out.msg = await page.evaluate(() => { const d = document.querySelector("dialog[data-fff-dialog]"); const m = document.getElementById(d.getAttribute("aria-describedby") || d.getAttribute("aria-labelledby")); return m ? m.textContent : ""; });
+      const b = page.locator("dialog[data-fff-dialog] button");
+      await (yes ? b.last() : b.first()).click();
+      out.shown = true;
+    } catch (e) { out.shown = false; }
+  })();
+  return out;
+}

@@ -1,6 +1,6 @@
 // CLOPOȚEL — teste pentru funcțiile noi (runda 8): raport plan/real (+CSV, tipărire) și anunțuri vocale.
 import fs from "fs";
-import {launch, axeRun, hOverflow, check, summary, kitSmoke, kitLabel} from "./_lib.mjs";
+import {launch, axeRun, hOverflow, check, summary, kitSmoke, kitLabel, answerDialog} from "./_lib.mjs";
 
 const SPEECH = () => {
   window.__said = [];
@@ -9,8 +9,9 @@ const SPEECH = () => {
 };
 async function setAgenda(page, text) {
   await page.click("#aPaste"); await page.fill("#pasteTa", text);
-  page.once("dialog", d => d.accept());
+  const a = answerDialog(page, true, 700);
   await page.click("#pRep");
+  await a.done;
   await page.waitForTimeout(100);
 }
 
@@ -21,8 +22,8 @@ console.log("1. pornire");
   check("0 erori", st.errs.length === 0, st.errs);
   check("0 cereri de rețea", st.net.length === 0, st.net);
   check("0 violări CSP", (await page.evaluate(() => window.__csp)).length === 0);
-  check("meta application-version 1.2.4", (await page.getAttribute('meta[name="application-version"]', "content")) === "1.2.4");
-  check("#app-version", /1\.2\.4 · 2026-10-23/.test(await page.textContent("#app-version")));
+  check("meta application-version 1.2.5", (await page.getAttribute('meta[name="application-version"]', "content")) === "1.2.5");
+  check("#app-version", /1\.2\.5 · 2026-10-23/.test(await page.textContent("#app-version")));
   check("fără depășire orizontală", (await hOverflow(page)) <= 0);
   check("raportul e închis implicit (starea inițială neschimbată)", !(await page.locator("#reportBox").evaluate(d => d.open)));
   await browser.close();
@@ -181,21 +182,24 @@ console.log("9. import fișier: confirmare înainte de înlocuirea agendei");
   const json = JSON.stringify({agenda: [{speaker: "Nou", title: "Unul", min: 4}, {speaker: "Nou2", title: "Doi", min: 5}], settings: {warn: 77}});
   const setWarn = () => page.evaluate(() => { try { return JSON.parse(localStorage.getItem("clopotel.settings.v1") || "{}").warn } catch (e) { return null } });
   // renunț
-  let msg = "";
-  page.once("dialog", d => { msg = d.message(); d.dismiss(); });
+  let dd = answerDialog(page, false);
   await page.setInputFiles("#aFile", {name: "agenda.json", mimeType: "application/json", buffer: Buffer.from(json)});
+  await dd.done;
+  const msg = dd.msg;
   await page.waitForTimeout(400);
-  check("a apărut confirmarea (cu numărul 2)", /2/.test(msg), msg);
+  check("a apărut confirmarea FFF.dialog (cu numărul 2)", dd.shown && /2/.test(msg), msg);
   check("după renunțare agenda rămâne cu 3 prezentări", (await rows()) === 3);
   check("setările nu s-au schimbat (warn ≠ 77)", (await setWarn()) !== 77);
   // CSV/text: renunț
-  page.once("dialog", d => d.dismiss());
+  dd = answerDialog(page, false);
   await page.setInputFiles("#aFile", {name: "agenda.csv", mimeType: "text/csv", buffer: Buffer.from("Dan;Patru;7\nEli;Cinci;8\n")});
+  await dd.done;
   await page.waitForTimeout(400);
   check("CSV: după renunțare agenda rămâne cu 3", (await rows()) === 3);
   // accept
-  page.once("dialog", d => d.accept());
+  dd = answerDialog(page, true);
   await page.setInputFiles("#aFile", {name: "agenda.json", mimeType: "application/json", buffer: Buffer.from(json)});
+  await dd.done;
   await page.waitForTimeout(400);
   check("după acceptare agenda are 2 prezentări", (await rows()) === 2);
   await browser.close();
