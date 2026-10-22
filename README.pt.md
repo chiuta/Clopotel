@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.2 · **Última atualização:** 2026-10-22
+**Versão:** 1.2.3 · **Última atualização:** 2026-10-22
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -61,6 +61,9 @@ Um clique (ou Enter) na versão apresentada (`v 1.1.1 · 2026-10-18`) abre a jan
 Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. O ficheiro `.nojekyll` já está incluído.
 
 ## Histórico / Registo de alterações
+
+### 1.2.3 — 2026-10-22
+- fff-kit 1.1.4: alvos de toque e tamanho mínimo do texto; alvos de toque/texto corrigidos
 
 ### 1.2.2 — 2026-10-22
 - fff-kit 1.1.2: PBKDF2 600 000 iterações, proteção anti-clickjacking
