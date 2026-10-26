@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.6 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -18,6 +18,12 @@ Un singur fișier HTML, fără dependențe externe, funcționează complet offli
 3. Apasă **Start**. Clopoțelul sună la avertizare (implicit cu 2 minute înainte), la final și periodic în depășire.
 4. **Ecran scenă** pune cronometrul pe tot ecranul; **Fereastră pentru proiector** deschide o a doua fereastră sincronizată
    (același browser, același calculator) pe care o muți pe ecranul sălii.
+
+## Funcții noi (v2.0.0, 26 octombrie 2026)
+
+- **Cronometru sincronizat pe mai multe ecrane** (secțiunea „Sincronizare pe mai multe ecrane”, modulul `p2p` din fff-kit): dispozitivul cu agenda este gazda; scena (ecranul vorbitorului), sala și moderatorul (telefon) se alătură cu un rol, prin cod copiat sau QR, direct între dispozitive (WebRTC, fără server, în aceeași rețea locală). Toți văd același timp; moderatorul poate porni/opri, trece la următorul și trimite pe ecranul scenei mesaje precum „Mai ai 2 minute”. **Limită:** NAT-urile simetrice (rețele mobile/corporative) nu se pot traversa fără server STUN/TURN; adresa IP locală se vede celuilalt dispozitiv.
+- **Agenda se recalculează** când o prezentare depășește: rândurile următoare arată ora estimată de început (≈ HH:MM), iar „Recuperează N min” scurtează proporțional prezentările rămase (minimum 1 min), după confirmare.
+- **Semnal vizual intens** (Setări): pentru persoane cu deficiență de auz, ecranul se colorează și afișează textul la avertizare și la final, plus vibrație pe telefon; pulsuri lente, static la „reducere mișcare”.
 
 ## Funcții noi (v1.1.0, 14 octombrie 2026)
 

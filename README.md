@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.6 · **Last updated:** 2026-10-26
+**Version:** 2.0.0 · **Last updated:** 2026-10-26
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -18,6 +18,12 @@ A single HTML file, with no external dependencies, working fully offline ("witho
 3. Press **Start**. The bell rings at the warning (by default 2 minutes before), at the end, and periodically in overtime.
 4. **Stage screen** puts the timer on the full screen; **Projector window** opens a second, synchronised window
    (same browser, same computer) that you move to the room's screen.
+
+## New features (v2.0.0, 26 October 2026)
+
+- **Multi-screen synchronized timer** ("Multi-screen sync", fff-kit `p2p` module): the device holding the agenda is the host; the stage (speaker screen), the hall and the moderator (phone) join with a role by copying a code or scanning a QR, device to device (WebRTC, no server, same local network). Everyone sees the same time; the moderator can start/pause, go next and send messages such as "2 minutes left" to the stage screen. **Limit:** symmetric NATs (mobile/corporate networks) cannot be crossed without a STUN/TURN server; the local IP address is visible to the other device.
+- **The agenda recalculates** when a talk overruns: following rows show the estimated start time, and "Recover N min" proportionally shortens the remaining talks (minimum 1 min) after confirmation.
+- **Intense visual signal** (Settings): for deaf and hard-of-hearing people, the screen changes colour and shows the text at the warning and the end, plus phone vibration; slow pulses, static with "reduce motion".
 
 ## New features (v1.1.0, 14 October 2026)
 
