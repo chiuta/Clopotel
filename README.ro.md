@@ -2,7 +2,9 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.0.1 · **Ultima actualizare:** 2026-10-27
+
+**Stare:** stabil · **Offline:** complet
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -40,6 +42,13 @@ Interfața are 8 limbi (RO, EN, FR, IT, ES, PT, DE, HU), alese din selectorul de
 ### Transparență și copie de siguranță (fff-kit)
 
 Un clic (sau Enter) pe versiunea afișată (`v 1.1.1 · 2026-10-18`) deschide fereastra „Transparență”: gazdele de rețea declarate (0 cereri externe), cheile de stocare locală cu dimensiuni, API-urile folosite, mărimea și SHA-256 al fișierului (cu verificator pentru un fișier descărcat) și **copia de siguranță** a datelor aplicației într-un fișier `.fff.json` (opțional criptat cu parolă, AES-GCM 256 / PBKDF2; parola nu poate fi recuperată), import cu confirmare și ștergerea datelor aplicației. Kitul (`fff-kit`, module: core, label, bundle) este lipit în `index.html`, nu face cereri de rețea și nu schimbă datele existente; fără el aplicația funcționează la fel. Textele kitului sunt în 8 limbi (ro, en, fr, it, es, pt, hu, de); **traducerile fr/it/es/pt/hu/de sunt automate și neverificate nativ**. Interfața aplicației însăși rămâne în română.
+
+## Ecran de vorbitor, control de la distanță și culori: ce există
+
+- **Ecran separat pentru vorbitor:** două căi. (1) *Fereastra pentru proiector* (același browser, același calculator): muți a doua fereastră pe al doilea monitor sau pe proiector. (2) *Sincronizare pe mai multe ecrane* (alt dispozitiv, de ex. telefon sau tabletă în aceeași rețea locală): te alături ca **Scenă** (ecranul vorbitorului) sau **Sală**; fără server.
+- **Control de la distanță:** un dispozitiv care se alătură ca **Moderator** (de obicei un telefon) poate porni/pune pe pauză, trece la prezentarea următoare, adăuga un minut și trimite mesaje scurte (de ex. „2 minute rămase”) care apar pe ecranul scenei. Gazda (dispozitivul cu agenda) rămâne stăpâna agendei.
+- **Culori pe faze:** inelul și cifrele cronometrului se schimbă după fază: verde-turcoaz cât mai e timp, auriu din momentul avertizării (implicit cu 2 minute înainte), roșu în depășire, auriu din nou când agenda s-a încheiat. Culoarea nu este niciodată singurul semnal: fiecare fază are și o etichetă text, iar **semnalul vizual intens** opțional (Setări) face ecranul să clipească cu text și face telefoanele să vibreze; la „reducere mișcare” clipirea e înlocuită cu o schimbare statică.
+- **Starea testării:** sincronizarea este acoperită de teste automate cu două sau mai multe instanțe de browser pe același calculator (`tests/sync.test.mjs`). **Nu** a fost testată pe telefoane reale, pe rețeaua Wi-Fi a unei săli sau cu un proiector real. NAT-urile simetrice (rețele mobile sau corporative) nu pot fi traversate fără un server STUN/TURN, pe care aplicația nu-l folosește.
 
 ## Scurtături
 
@@ -109,3 +118,6 @@ MIT — vezi [LICENSE](LICENSE).
 
 Autor: Alexandru-Ionuț Chiuță (Alexio) · <alexio@trom.tf>
 
+
+### 2.0.1 — 2026-10-27
+- Doar documentare: secțiunea „Ecran de vorbitor, control de la distanță și culori: ce există” (aceste capacități erau deja în 2.0.0, dar împrăștiate în note), cu starea testării scrisă explicit; liniile „Stare / Offline”.

@@ -2,7 +2,9 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.0.0 · **Last updated:** 2026-10-26
+**Version:** 2.0.1 · **Last updated:** 2026-10-27
+
+**Status:** stable · **Offline:** complete
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -40,6 +42,13 @@ The interface has 8 languages (RO, EN, FR, IT, ES, PT, DE, HU), chosen from the 
 ### Transparency and backup copy (fff-kit)
 
 A click (or Enter) on the displayed version (`v 1.1.1 · 2026-10-18`) opens the "Transparency" window: the declared network hosts (0 external requests), the local-storage keys with sizes, the APIs used, the size and SHA-256 of the file (with a checker for a downloaded file) and the **backup copy** of the app's data in a `.fff.json` file (optionally encrypted with a password, AES-GCM 256 / PBKDF2; the password cannot be recovered), import with confirmation and deletion of the app's data. The kit (`fff-kit`, modules: core, label, bundle) is pasted into `index.html`, makes no network requests and does not change existing data; without it the app works the same. The kit's texts are in 8 languages (ro, en, fr, it, es, pt, hu, de); **the fr/it/es/pt/hu/de translations are automatic and not natively verified**. The app's own interface remains in Romanian.
+
+## Speaker screen, remote control and colours: what exists
+
+- **Separate speaker screen:** two ways. (1) *Projector window* (same browser, same computer): drag the second window to the second monitor or projector. (2) *Multi-screen sync* (another device, e.g. a phone or tablet on the same local network): join as **Stage** (the speaker's screen) or **Hall**; no server involved.
+- **Remote control:** a device that joins as **Moderator** (typically a phone) can start/pause, go to the next talk, add a minute and send short messages (e.g. "2 minutes left") that appear on the stage screen. The host (the device holding the agenda) stays in control of the agenda.
+- **Colours by phase:** the timer ring and digits change with the phase: teal while there is time, gold from the warning moment (default 2 minutes before the end), red in overtime, gold again when the agenda is done. Colour is never the only signal: every phase also shows a text label, and the optional **intense visual signal** (Settings) flashes the screen with text and vibrates phones; with "reduce motion" the flashing is replaced by a static change.
+- **Testing status:** the synchronisation is covered by automated tests with two or more browser instances on the same machine (`tests/sync.test.mjs`). It has **not** been tested on real phones, a venue's Wi-Fi or a real projector. Symmetric NATs (mobile or corporate networks) cannot be crossed without a STUN/TURN server, which this app does not use.
 
 ## Shortcuts
 
@@ -108,3 +117,6 @@ Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)`. The
 MIT — see [LICENSE](LICENSE).
 
 Author: Alexandru-Ionuț Chiuță (Alexio) · <alexio@trom.tf>
+
+### 2.0.1 — 2026-10-27
+- Documentation only: the section "Speaker screen, remote control and colours: what exists" (these capabilities were already in 2.0.0 but were scattered in the notes), with an explicit testing status; "Status / Offline" lines.
