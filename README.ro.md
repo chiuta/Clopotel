@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.0.1 · **Ultima actualizare:** 2026-10-27
+**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
 
 **Stare:** stabil · **Offline:** complet
 
@@ -121,3 +121,5 @@ Autor: Alexandru-Ionuț Chiuță (Alexio) · <alexio@trom.tf>
 
 ### 2.0.1 — 2026-10-27
 - Doar documentare: secțiunea „Ecran de vorbitor, control de la distanță și culori: ce există” (aceste capacități erau deja în 2.0.0, dar împrăștiate în note), cu starea testării scrisă explicit; liniile „Stare / Offline”.
+
+**Culori pe faze (2.1.0).** În Setări poți alege culoarea fazei normale, a avertizării și a depășirii. O culoare cu contrast sub 3:1 față de fundal este refuzată cu mesaj; fiecare fază păstrează și eticheta text. „Culori implicite” readuce aspectul inițial. Subsolul trimite acum și la sincronizarea pe mai multe ecrane pentru alte dispozitive. Etichetele sunt scrise doar în RO și EN; celelalte limbi folosesc varianta EN, iar traducerile subsolului sunt automate.
