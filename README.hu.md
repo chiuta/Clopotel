@@ -4,6 +4,8 @@
 
 **Verzió:** 2.1.0 · **Utolsó frissítés:** 2026-10-27
 
+**Színek fázisonként (2.1.0).** A Beállításokban kiválasztható a normál fázis, a figyelmeztetés és a túllépés színe. A háttérhez képest 3:1 alatti kontrasztú színt az alkalmazás üzenettel elutasítja; minden fázis megtartja a szöveges címkéjét is. Az „Alapértelmezett színek” visszaállítja az eredeti megjelenést. Az élőláb mostantól a több képernyős szinkronizálásra is utal más eszközök esetén. A felület szövegei automatikusan fordítva (gépi fordítás, anyanyelvi beszélők nem ellenőrizték).
+
 **Állapot:** stabil · **Offline:** teljes
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**

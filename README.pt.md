@@ -4,6 +4,8 @@
 
 **Versão:** 2.1.0 · **Última atualização:** 2026-10-27
 
+**Cores por fase (2.1.0).** Em Definições pode escolher-se a cor da fase normal, do aviso e do tempo excedido. Uma cor com contraste inferior a 3:1 em relação ao fundo é recusada com uma mensagem; cada fase mantém também a etiqueta de texto. «Cores predefinidas» repõe o aspeto original. O rodapé remete agora também para a sincronização multiecrã para outros dispositivos. Textos da interface traduzidos automaticamente (tradução automática, não validada por falantes nativos).
+
 **Estado:** estável · **Offline:** completo
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**

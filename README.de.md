@@ -4,6 +4,8 @@
 
 **Version:** 2.1.0 · **Zuletzt aktualisiert:** 2026-10-27
 
+**Farben je Phase (2.1.0).** Unter Einstellungen lässt sich die Farbe der normalen Phase, der Warnung und der Überziehung wählen. Eine Farbe mit einem Kontrast unter 3:1 zum Hintergrund wird mit einer Meldung abgelehnt; jede Phase behält außerdem ihre Textbeschriftung. „Standardfarben“ stellt das ursprüngliche Aussehen wieder her. Die Fußzeile verweist jetzt auch auf die Mehrbildschirm-Synchronisierung für andere Geräte. Oberflächentexte automatisch übersetzt (maschinelle Übersetzung, nicht von Muttersprachlern geprüft).
+
 **Status:** stabil · **Offline:** vollständig
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
