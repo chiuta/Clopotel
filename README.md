@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.0.1 · **Last updated:** 2026-10-27
+**Version:** 2.1.0 · **Last updated:** 2026-10-27
 
 **Status:** stable · **Offline:** complete
 
@@ -120,3 +120,5 @@ Author: Alexandru-Ionuț Chiuță (Alexio) · <alexio@trom.tf>
 
 ### 2.0.1 — 2026-10-27
 - Documentation only: the section "Speaker screen, remote control and colours: what exists" (these capabilities were already in 2.0.0 but were scattered in the notes), with an explicit testing status; "Status / Offline" lines.
+
+**Phase colours (2.1.0).** Under Settings you can choose the colour of the normal, warning and overtime phases. A colour with contrast below 3:1 against the background is refused with a message; every phase also keeps its text label. "Default colours" restores the original look. The footer now also points to multi-screen sync for other devices. Labels written in RO and EN; the translations into fr/it/es/pt/de/hu (labels, messages, footer and this README note) are machine translations, not validated by native speakers.

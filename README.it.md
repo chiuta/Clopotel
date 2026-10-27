@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 2.0.1 · **Ultimo aggiornamento:** 2026-10-27
+**Versione:** 2.1.0 · **Ultimo aggiornamento:** 2026-10-27
+
+**Colori per fase (2.1.0).** In Impostazioni si può scegliere il colore della fase normale, dell’avviso e del superamento. Un colore con contrasto inferiore a 3:1 rispetto allo sfondo viene rifiutato con un messaggio; ogni fase mantiene anche l’etichetta di testo. «Colori predefiniti» ripristina l’aspetto originale. Il piè di pagina rimanda ora anche alla sincronizzazione multischermo per gli altri dispositivi. Testi dell’interfaccia tradotti automaticamente (traduzione automatica, non verificata da madrelingua).
 
 **Stato:** stabile · **Offline:** completo
 

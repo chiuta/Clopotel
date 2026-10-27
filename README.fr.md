@@ -2,7 +2,9 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 2.0.1 · **Dernière mise à jour :** 2026-10-27
+**Version :** 2.1.0 · **Dernière mise à jour :** 2026-10-27
+
+**Couleurs par phase (2.1.0).** Dans les Paramètres, vous pouvez choisir la couleur de la phase normale, de l’avertissement et du dépassement. Une couleur dont le contraste avec le fond est inférieur à 3:1 est refusée avec un message ; chaque phase garde aussi son étiquette textuelle. « Couleurs par défaut » rétablit l’aspect d’origine. Le pied de page renvoie désormais aussi à la synchronisation multi-écrans pour les autres appareils. Textes de l’interface traduits automatiquement (traduction automatique, non validée par des locuteurs natifs).
 
 **État :** stable · **Hors ligne :** complet
 
