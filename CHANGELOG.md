@@ -1,5 +1,9 @@
 # Jurnal de modificări — Clopotel
 
+## 2.1.1 — 2026-10-31
+
+Doar interfață (accesibilitate pe telefon, 360×740): casetele de bifare mai mici de 24 px → 24 px (WCAG 2.5.8). Fără alte schimbări de comportament.
+
 ## 2.1.0 — 2026-10-27 (anterior: 2.0.1)
 - Culori configurabile pe faze (normală / avertizare / depășire), în Setări. Se salvează în setări, se sincronizează odată cu ele și se pot reseta la cele implicite. O culoare cu contrast sub 3:1 față de fundal (panou și fundal ale temei active) este refuzată cu mesaj; faza rămâne mereu marcată și prin text, nu doar prin culoare. Fără culori alese, aspectul este identic cu 2.0.x.
 - Textul din subsol nu mai spune doar „același calculator”: menționează acum și sincronizarea pe mai multe ecrane (direct între dispozitive, fără server). RO și EN scrise; fr/it/es/pt/de/hu sunt traduceri automate.

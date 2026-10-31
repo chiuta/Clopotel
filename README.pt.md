@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 2.1.0 · **Última atualização:** 2026-10-27
+**Versão:** 2.1.1 · **Última atualização:** 2026-10-31
 
 **Cores por fase (2.1.0).** Em Definições pode escolher-se a cor da fase normal, do aviso e do tempo excedido. Uma cor com contraste inferior a 3:1 em relação ao fundo é recusada com uma mensagem; cada fase mantém também a etiqueta de texto. «Cores predefinidas» repõe o aspeto original. O rodapé remete agora também para a sincronização multiecrã para outros dispositivos. Textos da interface traduzidos automaticamente (tradução automática, não validada por falantes nativos).
 

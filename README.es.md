@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 2.1.0 · **Última actualización:** 2026-10-27
+**Versión:** 2.1.1 · **Última actualización:** 2026-10-31
 
 **Colores por fase (2.1.0).** En Ajustes se puede elegir el color de la fase normal, del aviso y del exceso de tiempo. Un color con contraste inferior a 3:1 respecto al fondo se rechaza con un mensaje; cada fase conserva además su etiqueta de texto. «Colores predeterminados» restaura el aspecto original. El pie de página remite ahora también a la sincronización multipantalla para otros dispositivos. Textos de la interfaz traducidos automáticamente (traducción automática, no validada por hablantes nativos).
 
