@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 2.1.0 · **Utolsó frissítés:** 2026-10-27
+**Verzió:** 2.1.1 · **Utolsó frissítés:** 2026-10-31
 
 **Színek fázisonként (2.1.0).** A Beállításokban kiválasztható a normál fázis, a figyelmeztetés és a túllépés színe. A háttérhez képest 3:1 alatti kontrasztú színt az alkalmazás üzenettel elutasítja; minden fázis megtartja a szöveges címkéjét is. Az „Alapértelmezett színek” visszaállítja az eredeti megjelenést. Az élőláb mostantól a több képernyős szinkronizálásra is utal más eszközök esetén. A felület szövegei automatikusan fordítva (gépi fordítás, anyanyelvi beszélők nem ellenőrizték).
 
