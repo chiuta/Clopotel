@@ -13,8 +13,8 @@
     "Worker"
   ],
   "storageKeys": [],
-  "sizeBytes": 388024,
-  "sha256": "67aced227f73d3c0d840d2c388d81719bd5c80d03032cad7eeb1eda7a44ad2f2",
+  "sizeBytes": 419345,
+  "sha256": "1965024ea2312ef299063ae88f7cc1373eb376effbc3983e539f5fe1998d67a1",
   "csp": {
     "present": true,
     "directives": {
@@ -57,6 +57,8 @@
       "bundle",
       "qr",
       "p2p",
+      "sync",
+      "history",
       "bridge"
     ]
   },
@@ -70,6 +72,8 @@
       "bundle",
       "qr",
       "p2p",
+      "sync",
+      "history",
       "bridge"
     ]
   },
